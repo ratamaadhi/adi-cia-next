@@ -1,0 +1,32 @@
+import { useRouter } from "next/router";
+import React from "react";
+import Navbar from "./navbar";
+import MenuBottom from "./menuBottom";
+
+function Layout({ children }) {
+  const pageRoute = useRouter();
+
+  const bg = "bg-gradient-to-br from-gray-900 to-gray-800";
+
+  return (
+    <div
+      className={`relative flex flex-col justify-between font-poppins min-h-screen ${
+        pageRoute.route === "/admin" || pageRoute.route === "/dashboard"
+          ? bg
+          : ""
+      }`}
+    >
+      {pageRoute.route !== "/admin" && pageRoute.route !== "/dashboard" ? (
+        <Navbar />
+      ) : null}
+
+      {children}
+
+      {pageRoute.route !== "/admin" && pageRoute.route !== "/dashboard" ? (
+        <MenuBottom />
+      ) : null}
+    </div>
+  );
+}
+
+export default Layout;
