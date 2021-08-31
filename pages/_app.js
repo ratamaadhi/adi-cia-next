@@ -5,10 +5,14 @@ import App from "next/app";
 import { GlobalContext } from '../appContext/store'
 import { fetchAPI } from '../lib/api';
 import { getStrapiMedia } from '../lib/media';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 function MyApp({ Component, pageProps }) {
 
   const { global } = pageProps;
+
+  useEffect(() => {
+    document.querySelector('html').classList.add(localStorage.getItem('theme'))
+  }, [])
 
   return (
       <>

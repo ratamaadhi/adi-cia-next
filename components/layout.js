@@ -10,7 +10,7 @@ function Layout({ children }) {
 
   return (
     <div
-      className={`relative flex flex-col justify-between font-poppins min-h-screen ${
+      className={`antialiased relative flex flex-col justify-between font-poppins min-h-screen ${
         pageRoute.route === "/admin" || pageRoute.route === "/dashboard"
           ? bg
           : ""
