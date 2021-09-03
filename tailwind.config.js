@@ -6,13 +6,19 @@ module.exports = {
     extend: {
       fontFamily: {
         poppins : ['Poppins', 'sans-serif']
+      },
+      fontSize: {
+        'xss' : ".6rem",
       }
     },
   },
   variants: {
-    extend: {},
+    extend: {
+      lineClamp : ['hover'],
+    },
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),
+    require('@tailwindcss/line-clamp'),
   ],
 }

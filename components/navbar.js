@@ -48,19 +48,19 @@ function Navbar({ categories }) {
         checked={enabled}
         onChange={() => setTheme(!enabled)}
         className={`${
-          enabled ? 'bg-gray-200 text-gray-800' : 'bg-gray-800 text-gray-200'
+          enabled ? 'bg-gray-300 text-gray-800' : 'bg-gray-800 text-gray-300'
         } relative inline-flex items-center h-6 rounded-full w-11`}
       >
         <span className="sr-only">Enable notifications</span>
         <span
           className={`${
-            enabled ? 'translate-x-6 bg-gray-200' : 'translate-x-1 bg-gray-800'
+            enabled ? 'translate-x-6 bg-gray-300' : 'translate-x-1 bg-gray-800'
           } inline-block w-4 h-4 transform rounded-full`}
         >
           {enabled ? 
-            <RiSunFill />
-          : 
             <RiMoonClearFill />
+          : 
+            <RiSunFill />
           }
         </span>
       </Switch>
@@ -69,15 +69,15 @@ function Navbar({ categories }) {
 
   return (
     <div className={`sticky inset-0 z-50 w-full ${scroll || toggle ? "bg-gradient-to-br dark:from-gray-800 from-gray-300 dark:to-gray-700 to-gray-200 shadow-lg dark:text-gray-200 text-gray-800" : "text-gray-200" }`}>
-      <div className={`flex justify-between  items-center transition-all duration-300 delay-100 ease-linear ${scroll ? "py-4" : "py-6 px-2"} w-11/12 mx-auto md:w-10/12`}>
-        <div className="cursor-pointer lg:w-4/5">
+      <div className={`flex justify-between  items-center transition-all duration-100 ease-linear ${scroll ? "py-4" : "py-6 px-2"} w-11/12 mx-auto md:w-10/12`}>
+        <div className="cursor-pointer">
           <Link href="/">
             <a className="hover:text-gray-400 focus:no-underline focus:text-gray-300 uppercase text-xl"><span className="font-semibold">{logoName[0]}</span> {logoName[1]}</a>
           </Link>
         </div>
-        <div className="hidden md:flex items-center justify-between lg:w-full space-x-3">
+        <div className="hidden md:flex items-center justify-between space-x-3">
           {navMenu.map(menu => 
-              <a href="#" key={menu.id + "dekstop"} className="py-1 px-3 text-center lg:w-full rounded-lg focus:no-underline focus:text-gray-300 focus:bg-gray-600 hover:bg-gray-600 hover:text-gray-300 transition-all delay-75 duration-200 ease-in-out">{menu.name}</a>
+              <a href="#" key={menu.id + "dekstop"} className="py-1 px-3 text-center rounded-lg focus:no-underline focus:text-gray-300 focus:bg-gray-800 hover:bg-gray-800 hover:text-gray-300 transition-all delay-75 duration-200 ease-in-out">{menu.name}</a>
             )}
           {ThemeToggle()}
         </div>

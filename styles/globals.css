@@ -27,6 +27,14 @@
   /* border: 1px solid rgba(255, 255, 255, 0.18); */
 }
 
+.glassmorph1-dark{
+  background: rgba(0, 1, 70, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(20, 24, 82, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  /* border: 1px solid rgba(255, 255, 255, 0.18); */
+}
+
 .no-glassmorph {
   background: none;
   box-shadow: none;
