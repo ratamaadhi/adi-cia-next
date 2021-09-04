@@ -1,5 +1,6 @@
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import AboutUs from '../components/aboutUs'
 import Banner from '../components/banner'
 import Footer from '../components/footer'
 import Hero from '../components/hero'
@@ -14,6 +15,7 @@ const Home = ({ articles, categories, homepage, moments, ...props }) => {
       <Seo seo={homepage.seo}/>
       <Hero homepage={homepage}/>
       <Banner moments={moments} homepage={homepage} />
+      <AboutUs homepage={homepage}/>
       <Footer />
     </Layout>
   )

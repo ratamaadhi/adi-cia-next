@@ -69,7 +69,7 @@ function Navbar({ categories }) {
 
   return (
     <div className={`sticky inset-0 z-50 w-full ${scroll || toggle ? "bg-gradient-to-br dark:from-gray-800 from-gray-300 dark:to-gray-700 to-gray-200 shadow-lg dark:text-gray-200 text-gray-800" : "text-gray-200" }`}>
-      <div className={`flex justify-between  items-center transition-all duration-100 ease-linear ${scroll ? "py-4" : "py-6 px-2"} w-11/12 mx-auto md:w-10/12`}>
+      <div className={`flex justify-between  items-center transition-all duration-100 ease-linear ${scroll ? "py-6" : "py-6 px-2"} w-11/12 mx-auto md:w-10/12`}>
         <div className="cursor-pointer">
           <Link href="/">
             <a className="hover:text-gray-400 focus:no-underline focus:text-gray-300 uppercase text-xl"><span className="font-semibold">{logoName[0]}</span> {logoName[1]}</a>
@@ -77,14 +77,14 @@ function Navbar({ categories }) {
         </div>
         <div className="hidden md:flex items-center justify-between space-x-3">
           {navMenu.map(menu => 
-              <a href="#" key={menu.id + "dekstop"} className="py-1 px-3 text-center rounded-lg focus:no-underline focus:text-gray-300 focus:bg-gray-800 hover:bg-gray-800 hover:text-gray-300 transition-all delay-75 duration-200 ease-in-out">{menu.name}</a>
+              <a href={`#${menu.name}`} key={menu.id + "dekstop"} className="py-1 px-3 text-center rounded-lg focus:no-underline focus:text-gray-300 focus:bg-gray-800 hover:bg-gray-800 hover:text-gray-300 transition-all delay-75 duration-200 ease-in-out">{menu.name}</a>
             )}
           {ThemeToggle()}
         </div>
         {/* <div className={`${scroll || toggle ? "bg-gray-500 shadow-lg" : ""} p-2 flex justify-center items-center rounded-xl md:hidden`} onClick={() => setToggle(!toggle)}>
           {!toggle ? <HiMenuAlt4 /> : <HiX/>}
         </div> */}
-        <div className="p-2 flex justify-center items-center rounded-xl md:hidden">
+        <div className="pl-2 py-2 flex justify-center items-center rounded-xl md:hidden">
           {ThemeToggle()}
         </div>
       </div>

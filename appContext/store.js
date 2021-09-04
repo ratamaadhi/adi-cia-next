@@ -4,7 +4,7 @@ export const GlobalContext = createContext({});
 
 export const navMenu = [
   {id: 1, name: "About", icon: (<RiHeart2Line />)},
-  {id: 2, name: "Blog", icon: (<RiArticleLine />) },
-  {id: 3, name: "Gallery", icon: (<RiGalleryLine />)},
+  {id: 2, name: "Gallery", icon: (<RiGalleryLine />)},
+  {id: 3, name: "Blog", icon: (<RiArticleLine />) },
   {id: 4, name: "Moment", icon: (<RiTimeLine />)},
 ]

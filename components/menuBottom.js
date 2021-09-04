@@ -12,11 +12,11 @@ const MenuBottom = () => {
       >
         {navMenu.map((menu) => {
           return (
-            <Link href="/" key={menu.id + "mobile"}>
-              <a className="flex items-center p-1 font-light focus:no-underline focus:text-gray-300 focus:bg-gray-800 hover:bg-gray-800 hover:text-gray-300 dark:focus:text-gray-800 dark:focus:bg-gray-400 dark:hover:bg-gray-400 dark:hover:text-gray-800 rounded-xl transition-all delay-75 duration-200 ease-in-out">
+            // <Link href="/" key={menu.id + "mobile"}>
+              <a href={`#${menu.name}`} className="flex items-center p-1 font-light focus:no-underline focus:text-gray-300 focus:bg-gray-800 hover:bg-gray-800 hover:text-gray-300 dark:focus:text-gray-800 dark:focus:bg-gray-400 dark:hover:bg-gray-400 dark:hover:text-gray-800 rounded-xl transition-all delay-75 duration-200 ease-in-out">
                 <span className="block p-1 text-2xl">{menu.icon}</span>
               </a>
-            </Link>
+            // </Link>
           );
         })}
       </div>

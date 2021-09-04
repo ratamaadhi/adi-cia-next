@@ -16,7 +16,7 @@ function Banner({ moments, homepage }) {
             <MomentsSwiper moments={moments} />
             {/* <Image className="object-cover" loader={myLoader} src={`/img/adiCiaPangalengan.png`} layout='fill' alt="photo profile" unoptimized /> */}
           </div>
-          <div className="absolute right-0 h-20 w-20 md:h-28 md:w-28 rounded-3xl glassmorph z-10"></div>
+          <div className="absolute right-3 top-2 h-20 w-20 md:h-28 md:w-28 rounded-3xl glassmorph z-10"></div>
           <div
             style={{ right: "14rem", top: "19.5rem" }}
             className="absolute right-24 top-40 md:right-56 md:top-80 h-16 w-16 md:h-20 md:w-20 rounded-3xl glassmorph z-10"

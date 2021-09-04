@@ -72,7 +72,7 @@ const MomentsSwiper = ({ moments }) => {
                         <h2 className="font-medium text-sm font-poppins capitalize">
                           {moment.title}
                         </h2>
-                        <p
+                        <p 
                           className={`${
                             readMore[i] &&
                             readMore[i].id === moment.id &&
@@ -86,7 +86,7 @@ const MomentsSwiper = ({ moments }) => {
                         <span className="absolute bottom-2 left-2 px-1 py-0.5 text-xss rounded dark:bg-gray-200 dark:text-gray-800 bg-gray-800 text-gray-200">
                           {Moment(moment.date).fromNow()}
                         </span>
-                        {moment.caption.length > 85 ? (
+                        {moment.caption.length > 50 ? (
                           <span
                             onClick={() => handleReadMore(moment.id)}
                             className="absolute bottom-2 right-2 px-2 text-xss dark:text-gray-200 text-gray-800 hover:underline cursor-pointer"

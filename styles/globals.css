@@ -2,9 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+*{
+  scroll-behavior: smooth;
+}
 
 .h-screen-banner {
-  height: calc(100vh - 80px);
+  height: calc(100vh - 88px);
 }
 
 .h-screen-menu {
