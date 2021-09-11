@@ -10,6 +10,7 @@ function Layout({ children }) {
 
   return (
     <div
+      id="homepage"
       className={`antialiased relative flex flex-col font-poppins min-h-screen ${
         pageRoute.route === "/admin" || pageRoute.route === "/dashboard"
           ? bg

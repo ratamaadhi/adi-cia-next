@@ -27,9 +27,11 @@ function Banner({ moments, homepage }) {
             {homepage.hero.content}
           </h2>
           <p className="text-white text-sm">{homepage.hero.description}</p>
-          <button className="hidden md:flex items-center mt-2 md:mt-4 px-3 py-2 uppercase bg-gray-800 text-white text-sm md:text-base rounded-xl space-x-2 cursor-pointer">
-            <span>more</span> <RiArrowDownSLine />
-          </button>
+          <a href="#About" className="no-underline">
+            <button className="hidden md:flex items-center mt-2 md:mt-4 px-3 py-2 uppercase bg-gray-800 text-white text-sm md:text-base rounded-xl space-x-2 cursor-pointer">
+              <span>more</span> <RiArrowDownSLine />
+            </button>
+          </a>
         </div>
       </div>
       <div className="md:hidden w-full z-20 px-6">
