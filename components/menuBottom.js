@@ -6,7 +6,7 @@ const MenuBottom = () => {
   const [scroll, setScroll] = useState(false);
 
   return (
-    <div className={`fixed md:hidden bottom-2 z-50 w-full px-6`}>
+    <div className={`fixed md:hidden bottom-2 z-40 w-full px-6`}>
       <div
         className={`flex justify-between items-center transition-all duration-100 ease-linear w-full p-1 mx-auto border border-gray-300 dark:border-gray-700 dark:text-gray-200 text-gray-800 bg-gray-200 dark:bg-gradient-to-br dark:from-gray-800 dark:to-gray-700 shadow-lg rounded-2xl`}
       >

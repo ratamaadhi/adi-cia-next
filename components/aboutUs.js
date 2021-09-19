@@ -11,8 +11,6 @@ const AboutUs = ({ homepage }) => {
 
   const [switchAbout, setSwitchAbout] = useState("cia");
 
-  console.log("homepage", homepage);
-
   return (
     <div id="About" className="relative min-h-screen flex flex-col md:flex-row justify-between w-full overflow-hidden">
       <div id="AboutCia" className={`relative text-gray-800 dark:text-gray-200 z-20`}>

@@ -6,8 +6,6 @@ import MomentsSwiper from "./swipe/MomentsSwiper";
 function Banner({ moments, homepage }) {
   const global = useContext(GlobalContext);
 
-  console.log("homepage", homepage);
-
   return (
     <div className="flex flex-col w-full h-screen-banner">
       <div className="relative hidden md:flex flex-row-reverse justify-between w-11/12 mx-auto md:w-10/12 lg:w-8/12 md:h-full md:mb-14 z-20">
@@ -34,7 +32,7 @@ function Banner({ moments, homepage }) {
           </a>
         </div>
       </div>
-      <div className="md:hidden w-full z-20 px-6">
+      <div className="md:hidden w-60 h-80 mx-auto z-20">
         <MomentsSwiper moments={moments} />
         {/* <div className="relative w-56 h-96 rounded-xl overflow-hidden shadow-2xl bg-gray-800" >
           <Image className="object-cover" loader={myLoader} src={`/img/adiCiaPangalengan.png`} layout='fill' alt="photo profile" unoptimized/>
