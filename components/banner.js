@@ -1,14 +1,16 @@
 import React, { useContext, useEffect } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
-import { GlobalContext } from "../appContext/store";
+import { GlobalContext, MenuBottomCtx } from "../appContext/store";
 import MomentsSwiper from "./swipe/MomentsSwiper";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
 
 function Banner({ moments, homepage }) {
   const global = useContext(GlobalContext);
+  const { changeActiveMenu } = useContext(MenuBottomCtx)
+
   const { ref, inView } = useInView({
-    threshold: 0.9,
+    threshold: 0.8,
   });
   const animating = useAnimation();
   const animatingSwipper = useAnimation();
@@ -58,13 +60,13 @@ function Banner({ moments, homepage }) {
       animating.start(animations.desktopOn);
       animatingSwipper.start(animations.desktopOn);
       animatingSwipperMobile.start(animations.desktopOn);
+      changeActiveMenu("#")
     }
     if (!inView) {
       animating.start(animations.destopOff);
       animatingSwipper.start(animations.destopOffLeft);
-      animatingSwipperMobile.start(animations.mobileOffLeft)
+      animatingSwipperMobile.start(animations.mobileOffLeft);
     }
-    console.log("inview", inView);
   }, [inView]);
 
   return (
@@ -113,7 +115,7 @@ function Banner({ moments, homepage }) {
           </motion.p>
           <a href="#About" className="no-underline">
             <motion.button
-              initial={animations.animatingSwipper}
+              initial={animations.destopOff}
               animate={animating}
               transition={animations.transition3}
               className="hidden md:flex items-center mt-2 md:mt-4 px-3 py-2 uppercase bg-gray-800 text-white text-sm md:text-base rounded-xl space-x-2 cursor-pointer"
@@ -127,7 +129,8 @@ function Banner({ moments, homepage }) {
         initial={animations.mobileOffLeft}
         animate={animatingSwipperMobile}
         transition={animations.transition1}
-      className="md:hidden w-60 h-80 mx-auto z-20">
+        className="md:hidden w-60 h-80 mx-auto z-20"
+      >
         <MomentsSwiper moments={moments} />
         {/* <div className="relative w-56 h-96 rounded-xl overflow-hidden shadow-2xl bg-gray-800" >
           <Image className="object-cover" loader={myLoader} src={`/img/adiCiaPangalengan.png`} layout='fill' alt="photo profile" unoptimized/>

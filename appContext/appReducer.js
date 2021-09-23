@@ -5,6 +5,10 @@ export default (state, action) => {
         ...state,
         user: action.payload
       }
+    case 'SET_MENU_ACTIVE' :
+      return {
+        id: action.payload
+      }
     default:
       return state;
   }

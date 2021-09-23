@@ -5,6 +5,7 @@ import "swiper/swiper-bundle.css";
 import Image from "next/image";
 import Moment from "moment";
 import { useEffect, useState } from "react";
+import { shimmer, toBase64 } from "../../util/toBase64";
 
 SwiperCore.use([Autoplay]);
 
@@ -55,9 +56,12 @@ const MomentsSwiper = ({ moments }) => {
                       className="object-cover"
                       loader={myLoader}
                       src={moment.momentImage.url}
-                      layout="fill"
+                      layout="responsive"
+                      width={moment.momentImage.width}
+                      height={moment.momentImage.height}
                       alt="photo profile"
-                      unoptimized
+                      placeholder="blur"
+                      blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(moment.momentImage.formats.thumbnail.width, moment.momentImage.formats.thumbnail.height))}`}
                     />
                     <div className="absolute bottom-0 w-full z-20">
                       <div
@@ -79,7 +83,7 @@ const MomentsSwiper = ({ moments }) => {
                             readMore[i].more
                               ? "line-clamp-none"
                               : "line-clamp-2"
-                          } text-xs font-light`}
+                          } text-xs font-light transition-all ease-in-out duration-300`}
                         >
                           {moment.caption}
                         </p>
@@ -107,7 +111,7 @@ const MomentsSwiper = ({ moments }) => {
                         readMore[i].more
                           ? "h-full"
                           : "h-2/5"
-                      } w-full dark:opacity-100 bg-opacity-30 bg-gradient-to-t dark:from-gray-800 from-gray-200 z-10 absolute -bottom-1 left-0`}
+                      } w-full dark:opacity-100 bg-opacity-30 bg-gradient-to-t dark:from-gray-800 from-gray-200 z-10 absolute -bottom-1 left-0 transition-all ease-linear duration-300`}
                     ></div>
                   </div>
                 </SwiperSlide>

@@ -1,9 +1,10 @@
 import { getStrapiMedia, myLoader } from "../lib/media";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
+import { MenuBottomCtx } from "../appContext/store";
 
 const AboutUs = ({ homepage }) => {
   const imageCiaCover = getStrapiMedia(homepage.AboutCia.cover);
@@ -11,22 +12,36 @@ const AboutUs = ({ homepage }) => {
   const imageAdiCover = getStrapiMedia(homepage.AboutAdi.cover);
   const imageAdi = getStrapiMedia(homepage.AboutAdi.profilePic);
 
-  const [switchAbout, setSwitchAbout] = useState("cia");
+  const { changeActiveMenu } = useContext(MenuBottomCtx)
 
-  const { ref, inView } = useInView({
+  const adi = useInView({
     threshold: 0.3,
   });
-  const animating = useAnimation();
+
+  const cia = useInView({
+    threshold: 0.3,
+  });
+
+  const adiAnimating = useAnimation();
+  const ciaAnimating = useAnimation();
 
   useEffect(() => {
-    if (inView) {
-      animating.start(animations.desktopOn);
+    if (adi.inView) {
+      adiAnimating.start(animations.desktopOn);
     }
-    if (!inView) {
-      animating.start(animations.destopOffBottom);
+    if (!adi.inView) {
+      adiAnimating.start(animations.destopOffBottom);
     }
-    console.log("inview", inView);
-  }, [inView]);
+    if (cia.inView) {
+      ciaAnimating.start(animations.desktopOn);
+    }
+    if (!cia.inView) {
+      ciaAnimating.start(animations.destopOffBottom);
+    }
+    if(cia.inView || adi.inView){
+      changeActiveMenu("About")
+    }
+  }, [adi.inView, cia.inView]);
 
   const animations = {
     off: {
@@ -67,11 +82,11 @@ const AboutUs = ({ homepage }) => {
   return (
     <div
       id="About"
-      ref={ref}
       className="relative min-h-screen flex flex-col md:flex-row justify-between w-full overflow-hidden"
     >
       <div
         id="AboutCia"
+        ref={cia.ref}
         className={`relative text-gray-800 dark:text-gray-200 z-20`}
       >
         {/* <div className={`absolute top-0 left-0 w-full h-full filter grayscale blur-sm contrast-50 z-0`}>
@@ -87,7 +102,7 @@ const AboutUs = ({ homepage }) => {
         <div className="relative px-6 md:px-0 md:pl-20 lg:pl-32 flex flex-col justify-between min-h-screen w-full pb-20">
           <motion.div
             initial={animations.destopOffBottom}
-            animate={animating}
+            animate={ciaAnimating}
             transition={animations.transition1}
             className={`pt-24 lg:pt-28 pb-2`}
           >
@@ -103,7 +118,7 @@ const AboutUs = ({ homepage }) => {
           </motion.div>
           <motion.div
             initial={animations.destopOffBottom}
-            animate={animating}
+            animate={ciaAnimating}
             transition={animations.transition2}
             className={`h-full w-full flex justify-evenly md:justify-start items-end space-x-2 lg:pb-20`}
           >
@@ -138,6 +153,7 @@ const AboutUs = ({ homepage }) => {
       </div>
       <div
         id="AboutAdi"
+        ref={adi.ref}
         className={`relative text-gray-800 dark:text-gray-200 z-20`}
       >
         {/* <div className={` absolute top-0 left-0 w-full h-full filter grayscale blur-sm contrast-50`}>
@@ -153,8 +169,8 @@ const AboutUs = ({ homepage }) => {
         <div className="relative px-6 md:px-0 md:pr-20 lg:pr-32 flex flex-col justify-between  min-h-screen w-full pb-20">
           <motion.div
             initial={animations.destopOff}
-            animate={animating}
-            transition={animations.transition3}
+            animate={adiAnimating}
+            transition={animations.transition1}
             className={`pt-24 lg:pt-28 pb-2 text-right`}
           >
             <div className={`text-4xl font-bold uppercase`}>
@@ -168,9 +184,9 @@ const AboutUs = ({ homepage }) => {
             </div>
           </motion.div>
           <motion.div
-          initial={animations.destopOff}
-          animate={animating}
-          transition={animations.transition3}
+            initial={animations.destopOff}
+            animate={adiAnimating}
+            transition={animations.transition2}
             className={`h-full w-full flex justify-evenly md:justify-end items-end space-x-2 lg:pb-20`}
           >
             <div className="md:hidden">
