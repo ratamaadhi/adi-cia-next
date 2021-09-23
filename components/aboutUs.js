@@ -14,6 +14,10 @@ const AboutUs = ({ homepage }) => {
 
   const { changeActiveMenu } = useContext(MenuBottomCtx)
 
+  const about = useInView({
+    threshold : .4
+  })
+
   const adi = useInView({
     threshold: 0.3,
   });
@@ -38,10 +42,11 @@ const AboutUs = ({ homepage }) => {
     if (!cia.inView) {
       ciaAnimating.start(animations.destopOffBottom);
     }
-    if(cia.inView || adi.inView){
+    if(about.inView){
       changeActiveMenu("About")
+      console.log("about",about.inView)
     }
-  }, [adi.inView, cia.inView]);
+  }, [adi.inView, cia.inView, about.inView]);
 
   const animations = {
     off: {
@@ -82,6 +87,7 @@ const AboutUs = ({ homepage }) => {
   return (
     <div
       id="About"
+      ref={about.ref}
       className="relative min-h-screen flex flex-col md:flex-row justify-between w-full overflow-hidden"
     >
       <div

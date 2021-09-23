@@ -18,7 +18,7 @@ function Gallery({ galleries }) {
   const [selected, setSelected] = useState(null);
 
   const { ref, inView } = useInView({
-    threshold: 0.4,
+    threshold: 0.25,
   });
 
   const animating = useAnimation();
@@ -51,6 +51,7 @@ function Gallery({ galleries }) {
     if (inView) {
       animating.start(animations.desktopOn);
       changeActiveMenu("Gallery")
+      console.log("Gallery",inView)
     }
     if (!inView) {
       animating.start(animations.destopOffBottom);

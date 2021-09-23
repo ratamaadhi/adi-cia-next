@@ -3,10 +3,12 @@ import Link from "next/link";
 import { useState } from "react";
 import { HiX, HiMenuAlt4 } from "react-icons/hi";
 import {RiArticleLine, RiGalleryLine, RiHeart2Line, RiTimeLine, RiMoonClearFill, RiSunFill} from 'react-icons/ri'
-import { GlobalContext, navMenu } from '../appContext/store'
+import { GlobalContext, MenuBottomCtx, navMenu } from '../appContext/store'
 import { Switch } from '@headlessui/react'
 
 function Navbar({ categories }) {
+
+  const { id } = useContext(MenuBottomCtx)
 
   const { siteName } = useContext(GlobalContext)
   
@@ -77,7 +79,7 @@ function Navbar({ categories }) {
         </div>
         <div className="hidden md:flex items-center justify-between space-x-3">
           {navMenu.map(menu => 
-              <a href={`#${menu.name}`} key={menu.id + "dekstop"} className="py-1 px-3 text-center rounded-lg focus:no-underline focus:text-gray-300 focus:bg-gray-800 hover:bg-gray-800 hover:text-gray-300 dark:focus:text-gray-800 dark:focus:bg-gray-300 dark:hover:bg-gray-300 dark:hover:text-gray-800 transition-all delay-75 duration-200 ease-in-out">{menu.name}</a>
+              <a href={`#${menu.name}`} key={menu.id + "dekstop"} className={`${id == menu.name ? 'text-gray-300 bg-gray-800 dark:text-gray-800 dark:bg-gray-300' : ''} py-1 px-3 text-center rounded-lg focus:no-underline focus:text-gray-300 focus:bg-gray-800 hover:bg-gray-800 hover:text-gray-300 dark:focus:text-gray-800 dark:focus:bg-gray-300 dark:hover:bg-gray-300 dark:hover:text-gray-800 transition-all delay-75 duration-200 ease-in-out`}>{menu.name}</a>
             )}
           {ThemeToggle()}
         </div>
