@@ -3,6 +3,7 @@ import { useState } from "react";
 import { MenuBottomProv } from "../appContext/store";
 import AboutUs from "../components/aboutUs";
 import Banner from "../components/banner";
+import Blog from "../components/blog";
 import Footer from "../components/footer";
 import Gallery from "../components/gallery";
 import Hero from "../components/hero";
@@ -26,6 +27,7 @@ const Home = ({
         <Banner moments={moments} homepage={homepage} />
         <AboutUs homepage={homepage} />
         <Gallery galleries={galleries} />
+        <Blog articles={articles} categories={categories} />
         <Footer />
       </Layout>
     </MenuBottomProv>

@@ -84,7 +84,7 @@ function Gallery({ galleries }) {
       <div
         id="Gallery"
         ref={ref}
-        className="w-11/12 mx-auto md:w-10/12 lg:w-8/12 bg-gray-200 dark:bg-gray-800 pt-24"
+        className="w-11/12 mx-auto md:w-10/12 lg:w-8/12 bg-gray-200 dark:bg-gray-800 pt-24 pb-12"
       >
         <div className="gallery gap-2 w-full">
           {photoGalleries &&
