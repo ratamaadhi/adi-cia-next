@@ -77,23 +77,22 @@ function Banner({ moments, homepage }) {
             initial={animations.destopOffLeft}
             animate={animatingSwipper}
             transition={animations.transition1}
-            className="absolute right-6 top-8 md:top-10 md:right-12 w-28 h-40 md:w-56 md:h-80 rounded-xl overflow-hidden shadow-2xl z-20"
+            className="absolute right-6 top-8 md:top-10 md:right-12 w-54 h-96 rounded-xl overflow-hidden shadow-2xl z-20"
           >
             <MomentsSwiper moments={moments} />
-            {/* <Image className="object-cover" loader={myLoader} src={`/img/adiCiaPangalengan.png`} layout='fill' alt="photo profile" unoptimized /> */}
           </motion.div>
           <motion.div
             initial={animations.destopOffLeft}
             animate={animatingSwipper}
             transition={animations.transition3}
-            className="absolute right-3 top-2 h-20 w-20 md:h-28 md:w-28 rounded-3xl glassmorph z-10"
+            className="absolute right-3 top-2 h-28 w-28 rounded-3xl glassmorph z-10"
           ></motion.div>
           <motion.div
             initial={animations.destopOffLeft}
             animate={animatingSwipper}
             transition={animations.transition2}
-            style={{ right: "14rem", top: "19.5rem" }}
-            className="absolute right-24 top-40 md:right-56 md:top-80 h-16 w-16 md:h-20 md:w-20 rounded-3xl glassmorph z-10"
+            style={{ right: "14rem", top: "23.5rem" }}
+            className="absolute h-20 w-20 rounded-3xl glassmorph z-10"
           ></motion.div>
         </div>
         <div className="w-1/2 px-3 pt-8 md:h-1/2 md:pt-0 md:my-auto">
@@ -129,7 +128,7 @@ function Banner({ moments, homepage }) {
         initial={animations.mobileOffLeft}
         animate={animatingSwipperMobile}
         transition={animations.transition1}
-        className="md:hidden w-60 h-80 mx-auto z-20"
+        className="md:hidden w-54 h-96 mx-auto z-20"
       >
         <MomentsSwiper moments={moments} />
         {/* <div className="relative w-56 h-96 rounded-xl overflow-hidden shadow-2xl bg-gray-800" >

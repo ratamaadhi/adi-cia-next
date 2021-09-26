@@ -51,12 +51,13 @@ const MomentsSwiper = ({ moments }) => {
           ? moments.map((moment, i) => {
               return (
                 <SwiperSlide key={moment.id}>
-                  <div className="relative w-full h-96 md:h-80 rounded-xl overflow-hidden bg-gray-800">
+                  <div className="relative w-54 h-96 rounded-xl overflow-hidden bg-gray-800">
                     <Image
+                      onMouseEnter={() => console.log('hover')} onMouseLeave={() => console.log('hover leave')} 
                       className="object-cover"
                       loader={myLoader}
                       src={moment.momentImage.url}
-                      layout="responsive"
+                      layout="fill"
                       width={moment.momentImage.width}
                       height={moment.momentImage.height}
                       alt="photo profile"
@@ -71,7 +72,7 @@ const MomentsSwiper = ({ moments }) => {
                           readMore[i].more
                             ? "h-full pb-8"
                             : "h-24"
-                        } relative glassmorph1 dark:glassmorph1-dark py-2 pl-2 pr-3 m-2 rounded-xl space-y-1 text-gray-800 dark:text-gray-200`}
+                        } relative glassmorph1 dark:glassmorph1-dark py-2 pl-2 pr-3 m-2 rounded-lg space-y-1 text-gray-800 dark:text-gray-200`}
                       >
                         <h2 className="font-medium text-sm font-poppins capitalize">
                           {moment.title}

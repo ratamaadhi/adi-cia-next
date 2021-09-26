@@ -9,6 +9,9 @@ module.exports = {
       },
       fontSize: {
         'xss' : ".6rem",
+      },
+      spacing: {
+        '54': '13.5rem',
       }
     },
   },
