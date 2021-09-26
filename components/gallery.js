@@ -98,7 +98,7 @@ function Gallery({ galleries }) {
                     animate={animating}
                     transition={{
                       type: "spring",
-                      bounce: 0.2,
+                      bounce: 0.5,
                       delay: i / photoGalleries.length,
                       duration: 1.5
                     }}
@@ -129,9 +129,18 @@ function Gallery({ galleries }) {
         </div>
         <div className="flex justify-center items-center w-full mt-2">
           <Link href="/">
-            <a className="px-3 py-2 uppercase rounded-xl bg-gray-800 dark:bg-gray-200 dark:text-gray-800 text-gray-200">
+            <motion.a 
+              initial={animations.destopOffBottom}
+              animate={animating}
+              transition={{
+                type: "spring",
+                bounce: 0.5,
+                delay: 1,
+                duration: 1.5
+              }}
+              className="px-3 py-2 uppercase rounded-xl bg-gray-800 dark:bg-gray-200 dark:text-gray-800 text-gray-200">
               view more
-            </a>
+            </motion.a>
           </Link>
         </div>
       </div>
