@@ -139,7 +139,7 @@ function Gallery({ galleries }) {
                 duration: 1.5
               }}
               className="px-3 py-2 uppercase rounded-xl bg-gray-800 dark:bg-gray-200 dark:text-gray-800 text-gray-200">
-              view more
+              more
             </motion.a>
           </Link>
         </div>

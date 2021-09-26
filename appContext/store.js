@@ -1,6 +1,6 @@
 import { createContext, useReducer } from "react";
 import { RiArticleLine, RiGalleryLine, RiHeart2Line, RiTimeLine } from "react-icons/ri";
-import AppReducer from './AppReducer';
+import AppReducer from './appReducer';
 export const GlobalContext = createContext({});
 
 export const navMenu = [
