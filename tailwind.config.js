@@ -11,6 +11,7 @@ module.exports = {
         'xss' : ".6rem",
       },
       spacing: {
+        '45': '11.25rem',
         '54': '13.5rem',
       }
     },

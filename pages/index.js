@@ -8,6 +8,7 @@ import Footer from "../components/footer";
 import Gallery from "../components/gallery";
 import Hero from "../components/hero";
 import Layout from "../components/layout";
+import Moment from "../components/moment";
 import Seo from "../components/seo";
 import { fetchAPI } from "../lib/api";
 
@@ -28,6 +29,7 @@ const Home = ({
         <AboutUs homepage={homepage} />
         <Gallery galleries={galleries} />
         <Blog articles={articles} categories={categories} />
+        <Moment moments={moments}/>
         <Footer />
       </Layout>
     </MenuBottomProv>

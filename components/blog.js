@@ -19,7 +19,7 @@ function Blog({ articles, categories }) {
   const [mdScreen, setMdScreen] = useState(false);
 
   const { ref, inView } = useInView({
-    threshold: 0.35,
+    threshold: 0.25,
   });
 
   const animating = useAnimation();
@@ -102,7 +102,7 @@ function Blog({ articles, categories }) {
       ref={ref}
       className="relative w-11/12 min-h-screen mx-auto md:w-10/12 lg:w-8/12 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 pt-24"
     >
-      <div className="px-3">
+      <div className="">
         <motion.div
           initial={animations.mobileOffLeft}
           animate={animatingCategory}
@@ -240,7 +240,7 @@ function Blog({ articles, categories }) {
                     >
                       {image ? (
                         <div
-                          className={`relative flex justify-center md:max-h-52 max-h-40 rounded-lg overflow-hidden shadow-md`}
+                          className={`relative flex justify-center md:max-h-40 max-h-32 rounded-lg overflow-hidden shadow-md`}
                         >
                           <Image
                             loader={myLoader}

@@ -58,8 +58,8 @@ const MomentsSwiper = ({ moments }) => {
                       loader={myLoader}
                       src={moment.momentImage.url}
                       layout="fill"
-                      width={moment.momentImage.width}
-                      height={moment.momentImage.height}
+                      // width={moment.momentImage.width}
+                      // height={moment.momentImage.height}
                       alt="photo profile"
                       placeholder="blur"
                       blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(moment.momentImage.formats.thumbnail.width, moment.momentImage.formats.thumbnail.height))}`}
