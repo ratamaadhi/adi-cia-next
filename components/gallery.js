@@ -10,12 +10,10 @@ import { useRouter } from 'next/router'
 
 function Gallery({ galleries }) {
   const route = useRouter()
-  console.log("route",route)
   const photoGalleries =
     galleries &&
     galleries.sort((a, b) => a.urutan - b.urutan).filter((x, i) => i < 8);
   
-  console.log("?", 0 < (route.route == "/" ? 8 : photoGalleries.length))
   const { changeActiveMenu } = useContext(MenuBottomCtx)
 
   const [isOpen, setIsOpen] = useState(false);
@@ -133,7 +131,7 @@ function Gallery({ galleries }) {
         </div>
         {route.route == "/" ? 
           <div className="flex justify-center items-center w-full mt-2 cursor-pointer">
-            <Link href="/galleries">
+            <Link href="/gallery">
               <motion.a 
                 initial={animations.destopOffBottom}
                 animate={animating}

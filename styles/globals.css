@@ -91,13 +91,19 @@
   @apply text-gray-700 dark:text-gray-300 antialiased;
 }
 
-.markdown-container > figure {
+.markdown-container figure {
   @apply aspect-w-16 aspect-h-9 mx-auto;
 }
 
 .markdown-container blockquote {
   @apply border-l-4 border-gray-700 dark:border-gray-200;
 }
-.prose pre{
-  @apply bg-gray-200 dark:bg-gray-800 p-0;
+.prose > pre, .prose-lg > pre, .md\:prose-lg > pre{
+  @apply dark:bg-gray-200 bg-gray-800;
+  padding: 0 !important;
+}
+
+.prose pre > pre, .prose-lg pre > pre{
+  margin: 0 !important;
+  @apply md:m-0 m-0;
 }

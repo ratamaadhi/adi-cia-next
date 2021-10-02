@@ -131,8 +131,6 @@ function Moment({ moments }) {
                       onClick={() => console.log('clicked', id)}
                     >
                       <Image
-                        onMouseEnter={() => console.log("hover")}
-                        onMouseLeave={() => console.log("hover leave")}
                         className="object-cover"
                         loader={myLoader}
                         src={momentImage.url}

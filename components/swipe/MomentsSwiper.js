@@ -41,11 +41,8 @@ const MomentsSwiper = ({ moments }) => {
         loop={true}
         autoplay={{ delay: 5000 }}
         centeredSlides={true}
-        // centeredSlidesBounds={true}
         slidesPerView={"auto"}
         spaceBetween={12}
-        // onSlideChange={(e) => console.log("slide change", e)}
-        onSwiper={(swiper) => console.log(swiper)}
       >
         {moments && moments.length > 0
           ? moments.map((moment, i) => {
@@ -53,13 +50,10 @@ const MomentsSwiper = ({ moments }) => {
                 <SwiperSlide key={moment.id}>
                   <div className="relative w-54 h-96 rounded-xl overflow-hidden bg-gray-800">
                     <Image
-                      onMouseEnter={() => console.log('hover')} onMouseLeave={() => console.log('hover leave')} 
                       className="object-cover"
                       loader={myLoader}
                       src={moment.momentImage.url}
                       layout="fill"
-                      // width={moment.momentImage.width}
-                      // height={moment.momentImage.height}
                       alt="photo profile"
                       placeholder="blur"
                       blurDataURL={`data:image/svg+xml;base64,${toBase64(shimmer(moment.momentImage.formats.thumbnail.width, moment.momentImage.formats.thumbnail.height))}`}

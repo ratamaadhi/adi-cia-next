@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import React, { useState, useContext } from "react";
 import { RiArrowUpSLine } from "react-icons/ri";
 import { MenuBottomCtx, navMenu } from "../appContext/store";
+import { capitalize } from "../util/capitalize";
 
 const MenuBottom = () => {
   const { id } = useContext(MenuBottomCtx);
@@ -17,7 +18,7 @@ const MenuBottom = () => {
           return (
             <>
               {menu.id == 3 ? (
-                <Link key={menu.id} href={`${route.route != "/" ? '/' : ''}#homepage`}>
+                <Link key={menu.id} href={`${route.route != "/" ? `#${capitalize(route.route.replace('/',''))}` : '#homepage'}`}>
                   <a
                     className={`${
                       id !== "#" && id !== "homepage" ? "flex" : "hidden"
@@ -29,7 +30,7 @@ const MenuBottom = () => {
                   </a>
                 </Link>
               ) : null}
-              <Link key={menu.id + "mobile"} href={`${route.route != "/" ? '/' : ''}#${menu.name}`}>
+              <Link key={menu.id + "mobile"} href={`${route.route == "/" ? `#${menu.name}` : capitalize(route.route.replace('/','')) == menu.name ? `#${menu.name}` : `/#${menu.name}`}`}>
                 <a
                   className={`${
                     id == menu.name
