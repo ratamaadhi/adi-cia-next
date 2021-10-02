@@ -56,22 +56,28 @@
   width: 100% !important;
   height: auto !important;
 }
-
-@media (min-width: 768px) {
+@media (min-width: 640px){
   .gallery{
     column-count: 3;
     -webkit-column-count: 3;
     -moz-column-count: 3;
   }
 }
-
-@media (min-width: 1024px) {
+@media (min-width: 768px) {
   .gallery{
     column-count: 4;
     -webkit-column-count: 4;
     -moz-column-count: 4;
   }
 }
+
+/* @media (min-width: 1024px) {
+  .gallery{
+    column-count: 4;
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+  }
+} */
 
 /* .gallery .image{
   @apply inline-block mb-2 overflow-hidden;

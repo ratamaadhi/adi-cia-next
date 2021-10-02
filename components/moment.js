@@ -88,7 +88,7 @@ function Moment({ moments }) {
     <div
       id="Moment"
       ref={ref}
-      className="relative w-11/12 min-h-screen mx-auto md:w-10/12 lg:w-8/12 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 pt-24 overflow-x-hidden"
+      className="relative w-11/12 sm:h-full sm:min-h-full min-h-screen mx-auto md:w-10/12 lg:w-8/12 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 pt-24 overflow-x-hidden"
     >
       <motion.div
         initial={animations.mobileOffLeft}

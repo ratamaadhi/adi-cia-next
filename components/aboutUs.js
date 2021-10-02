@@ -88,7 +88,7 @@ const AboutUs = ({ homepage }) => {
     <div
       id="About"
       ref={about.ref}
-      className="relative min-h-screen flex flex-col md:flex-row justify-between w-full overflow-hidden"
+      className="relative h-full flex flex-col md:flex-row justify-between w-full overflow-hidden"
     >
       <div
         id="AboutCia"
@@ -105,7 +105,7 @@ const AboutUs = ({ homepage }) => {
             unoptimized
           />
         </div> */}
-        <div className="relative px-6 md:px-0 md:pl-20 lg:pl-32 flex flex-col justify-between min-h-screen w-full pb-20">
+        <div className="relative px-6 md:px-0 md:pl-20 lg:pl-32 flex flex-col justify-between sm:h-full sm:min-h-full min-h-screen w-full pb-20">
           <motion.div
             initial={animations.destopOffBottom}
             animate={ciaAnimating}
@@ -172,7 +172,7 @@ const AboutUs = ({ homepage }) => {
             unoptimized
           />
         </div> */}
-        <div className="relative px-6 md:px-0 md:pr-20 lg:pr-32 flex flex-col justify-between  min-h-screen w-full pb-20">
+        <div className="relative px-6 md:px-0 md:pr-20 lg:pr-32 flex flex-col justify-between sm:h-full sm:min-h-full min-h-screen w-full pb-20">
           <motion.div
             initial={animations.destopOff}
             animate={adiAnimating}
