@@ -115,7 +115,7 @@ function Blog({ articles, categories }) {
       <div
         id="Blog"
         ref={ref}
-        className={`relative w-11/12 min-h-screen mx-auto md:w-10/12 lg:w-8/12 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 overflow-hidden ${
+        className={`relative w-11/12 sm:h-full sm:min-h-full min-h-screen mx-auto md:w-10/12 lg:w-8/12 bg-gray-200 text-gray-800 dark:bg-gray-800 dark:text-gray-200 overflow-hidden ${
           pageRoute.route == "/" ? "pt-24" : "pt-20"
           // 'pt-24'
         }`}

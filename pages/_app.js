@@ -17,7 +17,7 @@ function MyApp({ Component, pageProps }) {
   return (
       <>
         <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"></meta>
           <link rel="icon" href={getStrapiMedia(global.favicon)} />
           <link rel="preconnect" href="https://fonts.googleapis.com"/>
           <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
