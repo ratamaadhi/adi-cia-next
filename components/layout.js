@@ -33,7 +33,7 @@ function Layout({ children }) {
 
       {pageRoute.route !== "/admin" && pageRoute.route !== "/dashboard" ? (
         <Link href={`${pageRoute.route != "/" ? `#${capitalize(pageRoute.route.replace('/',''))}` : `#homepage`}`}>
-          <a className={`fixed ${id !== '#' && id !== 'homepage' ? 'md:block' : 'hidden'} cursor-pointer bottom-10 right-10 xl:bottom-16 xl:right-16 z-40 p-3 rounded-lg bg-gray-800 text-gray-200 dark:bg-gray-200 dark:text-gray-800`}>
+          <a className={`fixed hidden ${id !== '#' && id !== 'homepage' ? 'md:block' : ''} cursor-pointer bottom-10 right-10 xl:bottom-16 xl:right-16 z-40 p-3 rounded-lg bg-gray-800 text-gray-200 dark:bg-gray-200 dark:text-gray-800`}>
             <RiArrowUpSLine className="animate-ping font-bold"/>
           </a>
         </Link>
