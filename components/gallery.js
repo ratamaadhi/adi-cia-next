@@ -6,12 +6,16 @@ import { shimmer, toBase64 } from "../util/toBase64";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
 import { MenuBottomCtx } from "../appContext/store";
+import { useRouter } from 'next/router'
 
 function Gallery({ galleries }) {
+  const route = useRouter()
+  console.log("route",route)
   const photoGalleries =
     galleries &&
     galleries.sort((a, b) => a.urutan - b.urutan).filter((x, i) => i < 8);
   
+  console.log("?", 0 < (route.route == "/" ? 8 : photoGalleries.length))
   const { changeActiveMenu } = useContext(MenuBottomCtx)
 
   const [isOpen, setIsOpen] = useState(false);
@@ -90,7 +94,7 @@ function Gallery({ galleries }) {
           {photoGalleries &&
             photoGalleries
               .sort((a, b) => a.urutan - b.urutan)
-              .filter((x, i) => i < 8)
+              .filter((x, i) => i < (route.route == "/" ? 8 : photoGalleries.length))
               .map((item, i) => {
                 return (
                   <motion.div
@@ -127,22 +131,24 @@ function Gallery({ galleries }) {
                 );
               })}
         </div>
-        <div className="flex justify-center items-center w-full mt-2">
-          <Link href="/">
-            <motion.a 
-              initial={animations.destopOffBottom}
-              animate={animating}
-              transition={{
-                type: "spring",
-                bounce: 0.5,
-                delay: 1,
-                duration: 1.5
-              }}
-              className="px-3 py-2 uppercase rounded-xl bg-gray-800 dark:bg-gray-200 dark:text-gray-800 text-gray-200">
-              more
-            </motion.a>
-          </Link>
-        </div>
+        {route.route == "/" ? 
+          <div className="flex justify-center items-center w-full mt-2 cursor-pointer">
+            <Link href="/galleries">
+              <motion.a 
+                initial={animations.destopOffBottom}
+                animate={animating}
+                transition={{
+                  type: "spring",
+                  bounce: 0.5,
+                  delay: 1,
+                  duration: 1.5
+                }}
+                className="px-3 py-2 uppercase rounded-xl bg-gray-800 dark:bg-gray-200 dark:text-gray-800 text-gray-200">
+                more
+              </motion.a>
+            </Link>
+          </div>
+        :null}
       </div>
     </>
   );

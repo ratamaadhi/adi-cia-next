@@ -1,5 +1,3 @@
-import { useRouter } from "next/router";
-import { useState } from "react";
 import { MenuBottomProv } from "../appContext/store";
 import AboutUs from "../components/aboutUs";
 import Banner from "../components/banner";

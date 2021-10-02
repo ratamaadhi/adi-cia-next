@@ -80,3 +80,24 @@
 /* .gallery .image:hover img{
   @apply scale-110;
 } */
+
+.markdown-container > h1,
+.markdown-container > h2,
+.markdown-container > h3,
+.markdown-container > p,
+.markdown-container strong,
+.markdown-container blockquote,
+.prose a {
+  @apply text-gray-700 dark:text-gray-300 antialiased;
+}
+
+.markdown-container > figure {
+  @apply aspect-w-16 aspect-h-9 mx-auto;
+}
+
+.markdown-container blockquote {
+  @apply border-l-4 border-gray-700 dark:border-gray-200;
+}
+.prose pre{
+  @apply bg-gray-200 dark:bg-gray-800 p-0;
+}

@@ -3,14 +3,16 @@ import React, { useContext } from "react";
 import Navbar from "./navbar";
 import MenuBottom from "./menuBottom";
 import { MenuBottomCtx } from "../appContext/store";
+import {RiArrowUpSLine} from 'react-icons/ri'
 
 function Layout({ children }) {
-  const { homePageRef } = useContext(MenuBottomCtx);
+  const { homePageRef, id } = useContext(MenuBottomCtx);
 
   const pageRoute = useRouter();
 
   const bg = "bg-gradient-to-br from-gray-900 to-gray-800";
 
+  console.log("Layout",id)
   return (
     <div
       id="homepage"
@@ -27,6 +29,12 @@ function Layout({ children }) {
 
       {children}
 
+      {pageRoute.route !== "/admin" && pageRoute.route !== "/dashboard" ? (
+        <a href="#homepage" className={`fixed hidden ${id !== '#' && id !== 'homepage' ? 'md:block' : ''} cursor-pointer bottom-20 right-20 xl:right-28 z-40 p-3 rounded-lg bg-gray-800 text-gray-200 dark:bg-gray-200 dark:text-gray-800 transition-all ease-in-out duration-300 delay-75`}>
+          <RiArrowUpSLine className="animate-ping font-bold"/>
+        </a>
+      ) : null}
+      
       {pageRoute.route !== "/admin" && pageRoute.route !== "/dashboard" ? (
         <MenuBottom />
       ) : null}
