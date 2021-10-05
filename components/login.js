@@ -26,7 +26,6 @@ const Login = (props) => {
 
     try {
       const res = await loginApi(body)
-      console.log("res",res)
       setProgress(false)
       if (res.data.jwt) {
         nookies.set(null,'uat', res.data.jwt)

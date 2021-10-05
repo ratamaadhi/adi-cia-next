@@ -3,7 +3,7 @@ import { getStrapiMedia, myLoader } from '../lib/media'
 import Image from 'next/image'
 
 function Hero({homepage}) {
-  const imageUrl = getStrapiMedia(homepage.seo.shareImage.formats.large)
+  const imageUrl = getStrapiMedia(homepage.seo.shareImage)
   return (
     <div className="absolute inset-0 bg-gray-200 dark:bg-gray-800 w-full h-screen">
       <Image loader={myLoader} src={imageUrl} alt="nature unplash" layout="fill" className="w-full h-full object-cover" unoptimized/>

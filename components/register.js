@@ -43,7 +43,6 @@ const Register = () => {
 
     try {
       const res = await registerApi(body)
-      console.log("res",res)
       setProgress(false)
       if (res.data.jwt) {
         setSuccess(true)
