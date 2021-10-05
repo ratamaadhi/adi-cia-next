@@ -34,7 +34,7 @@ const Home = ({
   );
 };
 
-export async function getStaticProps() {
+export async function getServerSideProps(ctx) {
   // Run API calls in parallel
   const [articles, categories, homepage, moments, galleries] =
     await Promise.all([
@@ -47,7 +47,6 @@ export async function getStaticProps() {
 
   return {
     props: { articles, categories, homepage, moments, galleries },
-    revalidate: 1,
   };
 }
 

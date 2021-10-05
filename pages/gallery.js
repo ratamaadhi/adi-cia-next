@@ -20,7 +20,7 @@ const Galleries = ({
     </MenuBottomProv>
   )
 }
-export async function getStaticProps() {
+export async function getServerSideProps() {
   // Run API calls in parallel
   const [ homepage, galleries ] =
     await Promise.all([
@@ -30,7 +30,6 @@ export async function getStaticProps() {
 
   return {
     props: { homepage, galleries },
-    revalidate: 1,
   };
 }
 

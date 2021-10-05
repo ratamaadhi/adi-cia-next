@@ -263,7 +263,7 @@ function Blog({ articles, categories }) {
                           >
                             <Image
                               loader={myLoader}
-                              src={getStrapiMedia(image.formats.medium)}
+                              src={getStrapiMedia(image)}
                               alt={image.hash}
                               layout="intrinsic"
                               width={image.width}
