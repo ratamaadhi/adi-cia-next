@@ -1,12 +1,15 @@
 import React, { useContext, useEffect } from "react";
 import { RiArrowDownSLine } from "react-icons/ri";
-import { GlobalContext, MenuBottomCtx } from "../appContext/store";
+import { MenuBottomCtx } from "../appContext/store";
 import MomentsSwiper from "./swipe/MomentsSwiper";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
+import { fetchAPI } from "../lib/api";
+import useSWR from "swr";
 
-function Banner({ moments, homepage }) {
-  const global = useContext(GlobalContext);
+function Banner() {
+  const { data : moments } = useSWR("/moments", fetchAPI)
+  const { data : homepage } = useSWR("/homepage", fetchAPI)
   const { changeActiveMenu } = useContext(MenuBottomCtx)
 
   const { ref, inView } = useInView({

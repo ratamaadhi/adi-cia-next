@@ -5,8 +5,11 @@ import { RiArrowDownSLine, RiArrowUpSLine } from "react-icons/ri";
 import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
 import { MenuBottomCtx } from "../appContext/store";
+import useSWR from "swr";
+import { fetchAPI } from "../lib/api";
 
-const AboutUs = ({ homepage }) => {
+const AboutUs = () => {
+  const { data : homepage } = useSWR("/homepage", fetchAPI)
   const imageCiaCover = getStrapiMedia(homepage.AboutCia.cover);
   const imageCia = getStrapiMedia(homepage.AboutCia.profilePic);
   const imageAdiCover = getStrapiMedia(homepage.AboutAdi.cover);

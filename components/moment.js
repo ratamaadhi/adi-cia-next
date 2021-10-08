@@ -6,10 +6,12 @@ import { shimmer, toBase64 } from "../util/toBase64";
 import { myLoader } from "../lib/media";
 import { useInView } from "react-intersection-observer";
 import { MenuBottomCtx } from "../appContext/store";
+import useSWR from "swr";
+import { fetchAPI } from "../lib/api";
 
-function Moment({ moments }) {
+function Moment() {
+  const { data : moments } = useSWR("/moments", fetchAPI)
   const { changeActiveMenu } = useContext(MenuBottomCtx);
-
   const momentRef = useRef(null);
 
   const [readMore, setReadMore] = useState([]);

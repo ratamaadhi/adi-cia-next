@@ -9,8 +9,11 @@ import Moment from "moment";
 import Footer from "./footer";
 import { toSlugPage } from "../util/navigations";
 import { useRouter } from "next/router";
+import { fetchAPI } from "../lib/api";
+import useSWR from "swr";
 
-function Slug({ selectedBlog }) {
+function Slug({slug}) {
+  const { data : selectedBlog } = useSWR("/articles/"+slug, fetchAPI)
   const pageRoute = useRouter();
   return (
     <div
@@ -38,12 +41,12 @@ function Slug({ selectedBlog }) {
         </div>
         <div onClick={() => toSlugPage(selectedBlog.slug)} className="w-full sm:w-8/12 h-auto mx-auto flex justify-between items-center mb-2 dark:text-gray-200 text-gray-800">
           <h2 className="font-bold text-4xl font-poppins">
-            {selectedBlog.title}
+            {selectedBlog && selectedBlog.title}
           </h2>
         </div>
         <div className="w-full sm:w-8/12 h-auto mx-auto flex justify-between items-center mb-4 dark:text-gray-200 text-gray-800">
           <h3 className="font-light text-sm font-poppins">
-            {selectedBlog.description}
+            {selectedBlog && selectedBlog.description}
           </h3>
         </div>
         <div

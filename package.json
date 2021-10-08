@@ -24,7 +24,8 @@
     "rehype-raw": "^6.1.0",
     "remark-gfm": "^2.0.0",
     "sass": "^1.38.1",
-    "swiper": "^6.8.4"
+    "swiper": "^6.8.4",
+    "swr": "^1.0.1"
   },
   "devDependencies": {
     "autoprefixer": "^10.2.6",
