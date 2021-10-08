@@ -7,8 +7,11 @@ import { useInView } from "react-intersection-observer";
 import { useAnimation, motion } from "framer-motion";
 import { MenuBottomCtx } from "../appContext/store";
 import { useRouter } from "next/router";
+import useSWR from "swr";
+import { fetchAPI } from "../lib/api";
 
-function Gallery({ galleries }) {
+function Gallery() {
+  const { data : galleries } = useSWR("/galleries", fetchAPI)
   const route = useRouter();
   const photoGalleries =
     galleries &&

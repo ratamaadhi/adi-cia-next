@@ -14,7 +14,6 @@ function Layout({ children }) {
 
   const bg = "bg-gradient-to-br from-gray-900 to-gray-800";
 
-  console.log("Layout",id)
   return (
     <div
       id="homepage"

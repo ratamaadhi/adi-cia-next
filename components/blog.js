@@ -9,8 +9,13 @@ import { useInView } from "react-intersection-observer";
 import { MenuBottomCtx } from "../appContext/store";
 import ModalBlog from "./modalBlog";
 import { useRouter } from "next/router";
+import { fetchAPI } from "../lib/api";
+import useSWR from "swr";
 
-function Blog({ articles, categories }) {
+function Blog() {
+  const { data : articles } = useSWR("/articles", fetchAPI)
+  const { data : categories } = useSWR("/categories", fetchAPI)
+
   const pageRoute = useRouter();
   const dragRef = useRef(null);
   const dragItem = useRef(null);

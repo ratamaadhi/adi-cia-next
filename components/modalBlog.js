@@ -8,6 +8,7 @@ import { shimmer, toBase64 } from "../util/toBase64";
 import Moment from "moment";
 import Footer from "./footer";
 import { toBlogsPage, toSlugPage } from "../util/navigations";
+import Link from "next/link";
 
 function ModalBlog({ selectedBlog, setOpenBlog }) {
   return (
@@ -25,7 +26,9 @@ function ModalBlog({ selectedBlog, setOpenBlog }) {
       <div className="w-full flex flex-col items-center bg-gray-200 dark:bg-gray-800 overflow-y-scroll overflow-x-hidden px-4 pt-6 rounded-t-2xl">
         <div className="w-full sm:w-8/12 h-auto mx-auto flex justify-between items-center mb-6">
           <div className="text-xs sm:text-sm tracking-wide w-20 flex justify-center items-center py-1 px-2 rounded-xl dark:bg-gray-200 bg-gray-800 text-gray-200 dark:text-gray-800">
-            {selectedBlog && selectedBlog.category && selectedBlog.category.slug}
+            {selectedBlog &&
+              selectedBlog.category &&
+              selectedBlog.category.slug}
           </div>
           <div className="text-xs sm:text-sm tracking-wide flex justify-center items-center py-1 px-2 dark:text-gray-400 text-gray-600">
             <span className="mr-1">
@@ -34,11 +37,13 @@ function ModalBlog({ selectedBlog, setOpenBlog }) {
             {selectedBlog && Moment(selectedBlog.published_at).fromNow()}
           </div>
         </div>
-        <div onClick={() => toSlugPage(selectedBlog.slug)} className="w-full sm:w-8/12 h-auto mx-auto flex justify-between items-center mb-2 dark:text-gray-200 text-gray-800 cursor-pointer">
-          <h2 className="font-bold text-4xl font-poppins">
-            {selectedBlog.title}
-          </h2>
-        </div>
+        <Link href={`/blog/${selectedBlog.slug}`}>
+          <div className="w-full sm:w-8/12 h-auto mx-auto flex justify-between items-center mb-2 dark:text-gray-200 text-gray-800 cursor-pointer">
+            <h2 className="font-bold text-4xl font-poppins">
+              {selectedBlog.title}
+            </h2>
+          </div>
+        </Link>
         <div className="w-full sm:w-8/12 h-auto mx-auto flex justify-between items-center mb-4 dark:text-gray-200 text-gray-800">
           <h3 className="font-light text-sm font-poppins">
             {selectedBlog.description}

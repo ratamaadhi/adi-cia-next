@@ -1,4 +1,5 @@
 import React from 'react'
+import { SWRConfig } from 'swr'
 import { MenuBottomProv } from '../../appContext/store'
 import Blog from '../../components/blog'
 import Footer from '../../components/footer'
@@ -6,19 +7,21 @@ import Layout from '../../components/layout'
 import Seo from '../../components/seo'
 import { fetchAPI } from '../../lib/api'
 
-function BlogsPage({homepage, articles, categories}) {
+function BlogsPage({ fallback, homepage, articles, categories}) {
   return (
     <MenuBottomProv>
-      <Layout>
-        <Seo seo={homepage.seo} />
-        <Blog articles={articles} categories={categories} />
-        <Footer />
-      </Layout>
+      <SWRConfig value={{fallback}}>
+        <Layout>
+          <Seo seo={homepage.seo} />
+          <Blog />
+          <Footer />
+        </Layout>
+      </SWRConfig>
     </MenuBottomProv>
   )
 }
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
   // Run API calls in parallel
   const [articles, categories, homepage] =
     await Promise.all([
@@ -28,7 +31,11 @@ export async function getServerSideProps() {
     ]);
 
   return {
-    props: { articles, categories, homepage },
+    props: { fallback: {
+      '/articles' : articles,
+      '/categories' : categories,
+    }, homepage },
+    revalidate: 1,
   };
 }
 
