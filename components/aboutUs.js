@@ -47,7 +47,6 @@ const AboutUs = () => {
     }
     if(about.inView){
       changeActiveMenu("About")
-      console.log("about",about.inView)
     }
   }, [adi.inView, cia.inView, about.inView]);
 

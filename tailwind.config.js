@@ -1,11 +1,20 @@
 module.exports = {
   mode: 'jit',
-  purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+ 
+    // Or if using `src` directory:
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
   darkMode: 'class', // or 'media' or 'class'
   theme: {
     extend: {
       fontFamily: {
-        poppins : ['Poppins', 'sans-serif']
+        poppins : ['Poppins', 'sans-serif'],
+        satisfy : ['Satisfy', 'cursive'],
+        playFair : ['Playfair Display', 'serif'],
       },
       fontSize: {
         'xss' : ".6rem",
@@ -24,7 +33,6 @@ module.exports = {
   },
   plugins: [
     require('@tailwindcss/aspect-ratio'),
-    require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
   ],
 }

@@ -86,7 +86,6 @@ function Blog() {
       animating.start(animations.desktopOn);
       animatingCategory.start(animations.mobileOnLeft);
       changeActiveMenu("Blog");
-      console.log("Blog", inView);
     }
     if (!inView) {
       animating.start(animations.destopOffBottom);

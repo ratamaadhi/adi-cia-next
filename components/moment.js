@@ -61,7 +61,6 @@ function Moment() {
     if (inView) {
       animating.start(animations.mobileOnLeft);
       changeActiveMenu("Moment");
-      console.log("Moment", inView);
     }
     if (!inView) {
       animating.start(animations.mobileOffLeft);
@@ -130,7 +129,7 @@ function Moment() {
                       exit={animations.mobileOffLeft}
                       key={id}
                       className="relative w-45 h-80 rounded-xl overflow-hidden dark:bg-gray-800 bg-gray-200 shadow-lg"
-                      onClick={() => console.log('clicked', id)}
+                      // onClick={() => console.log('clicked', id)}
                     >
                       <Image
                         className="object-cover"

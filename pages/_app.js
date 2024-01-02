@@ -5,7 +5,7 @@ import App from "next/app";
 import { GlobalContext } from '../appContext/store'
 import { fetchAPI } from '../lib/api';
 import { getStrapiMedia } from '../lib/media';
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 function MyApp({ Component, pageProps }) {
 
   const { global } = pageProps;
@@ -21,6 +21,8 @@ function MyApp({ Component, pageProps }) {
           <link rel="icon" href={getStrapiMedia(global.favicon)} />
           <link rel="preconnect" href="https://fonts.googleapis.com"/>
           <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
+          <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet" />
+          <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,900;1,400;1,600;1,700;1,900&display=swap" rel="stylesheet" />
         </Head>
         <GlobalContext.Provider value={global}>
           <Component {...pageProps} />

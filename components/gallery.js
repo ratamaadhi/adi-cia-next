@@ -58,7 +58,6 @@ function Gallery() {
     if (inView) {
       animating.start(animations.desktopOn);
       changeActiveMenu("Gallery");
-      console.log("Gallery", inView);
     }
     if (!inView) {
       animating.start(animations.destopOffBottom);

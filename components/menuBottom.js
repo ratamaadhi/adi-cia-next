@@ -16,7 +16,7 @@ const MenuBottom = () => {
       >
         {navMenu.map((menu, i) => {
           return (
-            <>
+            <React.Fragment key={i}>
               {menu.id == 3 ? (
                 <Link key={menu.id} href={`${route.route != "/" ? `#${capitalize(route.route.replace('/',''))}` : '#homepage'}`}>
                   <a
@@ -41,7 +41,7 @@ const MenuBottom = () => {
                   <span className="block p-1 text-2xl">{menu.icon}</span>
                 </a>
               </Link>
-            </>
+            </React.Fragment>
           );
         })}
       </div>
