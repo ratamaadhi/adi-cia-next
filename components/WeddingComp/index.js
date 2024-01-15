@@ -1,21 +1,24 @@
-import React, { useRef, useState } from "react";
-import useSWR from "swr";
-import { fetchAPI } from "../../lib/api";
-import { useRouter } from "next/router";
-import InvitationPopup from "./InvitationPopup";
+import React, { useRef, useState } from 'react';
+import useSWR from 'swr';
+import { fetchAPI } from '../../lib/api';
+import { useRouter } from 'next/router';
+import InvitationPopup from './InvitationPopup';
 import {
   AnimatePresence,
   motion,
   useScroll,
   useTransform,
-} from "framer-motion";
-import LoadingPageWedding from "./LoadingPageWedding";
-import Image from "next/image";
-import { myLoader } from "../../lib/media";
-import { shimmer, toBase64 } from "../../util/toBase64";
+} from 'framer-motion';
+import LoadingPageWedding from './LoadingPageWedding';
+import Image from 'next/image';
+import { myLoader } from '../../lib/media';
+import { shimmer, toBase64 } from '../../util/toBase64';
+import MdFormat from '../../util/md';
+import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
 
 function WeddingComp({ data }) {
-  console.log("WeddingComp data", data);
+  console.log('WeddingComp data', data);
 
   // const { data: dataWeddingAPI, isValidating: isValidateWeddingAPI } = useSWR(
   //   '/wedding',
@@ -26,9 +29,6 @@ function WeddingComp({ data }) {
 
   const route = useRouter();
   const { query, isReady } = route;
-  console.log("route", route);
-  console.log("isReady", isReady);
-  console.log("query", query);
 
   function isLoadingPage() {
     return !isReady;
@@ -37,21 +37,20 @@ function WeddingComp({ data }) {
   const heroReff = useRef(null);
   const { scrollYProgress: scrlYHero } = useScroll({
     target: heroReff,
-    offset: ["start start", "end end"],
+    offset: ['start start', 'end end'],
   });
 
-  const scaleFrameFlower = useTransform(scrlYHero, [0, 1], ["100%", "250%"]);
-  const opacityFrameFlower = useTransform(scrlYHero, [0.8, 1], ["100%", "0%"]);
-  const scaleTextHero = useTransform(scrlYHero, [0, 0.4], ["100%", "200%"]);
-  const opacityTextHero = useTransform(scrlYHero, [0, 0.4], ["100%", "0%"]);
-  const blurTextHero = useTransform(scrlYHero, [0, 0.4], ["100%", "0%"]);
-  const scaleImgSec1 = useTransform(scrlYHero, [0, 1], ["100%", "120%"]);
-  const opacityImgSec1 = useTransform(scrlYHero, [0.8, 1], ["100%", "0%"]);
-  console.log("opacityImgSec1", opacityImgSec1);
+  const scaleTextHero = useTransform(scrlYHero, [0, 0.4], ['100%', '250%']);
+  const opacityTextHero = useTransform(scrlYHero, [0, 0.4], ['100%', '0%']);
+  const opacityTextHeroBlur = useTransform(scrlYHero, [0, 1], ['100%', '0%']);
+  const blurTextHero = useTransform(scrlYHero, [0.4, 1], ['0%', '100%']);
+  const lineTextHero = useTransform(scrlYHero, [0.4, 1], ['0px', '180px']);
+  const scaleImgSec1 = useTransform(scrlYHero, [0, 1], ['100%', '120%']);
+  const opacityImgSec1 = useTransform(scrlYHero, [0.8, 1], ['100%', '0%']);
 
   return (
     <div className="relative bg-slate-950 min-h-screen w-full">
-      <div className="max-w-screen-2xl mx-auto">
+      <section className="max-w-screen-sm w-full mx-auto">
         {isLoadingPage() && <LoadingPageWedding data={data} />}
 
         <AnimatePresence initial={false}>
@@ -77,7 +76,7 @@ function WeddingComp({ data }) {
               style={{ scale: scaleImgSec1, opacity: opacityImgSec1 }}
             >
               <motion.div className="relative w-full h-full filter blur-[0.75px]">
-                <div className="absolute w-full h-full bg-violet-950/40 top-0 left-0 z-10" />
+                <div className="absolute w-full h-5/6 bottom-0 left-0 z-10 bg-gradient-to-t from-slate-950 via-slate-950/30" />
                 <Image
                   src={data.imageSection1.formats.medium.url}
                   loader={myLoader}
@@ -95,7 +94,7 @@ function WeddingComp({ data }) {
               </motion.div>
             </motion.div>
 
-            <motion.div
+            {/* <motion.div
               className="absolute z-20 top-0 left-0 w-full h-[100vh]"
               // style={{ scale: scrlYHero }}
             >
@@ -110,37 +109,117 @@ function WeddingComp({ data }) {
                   className="object-cover drop-shadow-xl blur-[2px] saturate-50"
                 />
               </motion.div>
-            </motion.div>
+            </motion.div> */}
             <motion.div
               className="w-full h-screen absolute inset-0 -top-6 z-10 text-white text-center flex flex-col justify-center items-center gap-4"
               style={{
-                opacity: opacityTextHero,
                 scale: scaleTextHero,
               }}
             >
-              <motion.h5
-                className="text-base"
-                style={{
-                  textShadow: `0 0 ${opacityTextHero}px white`,
-                  color: "transparent",
-                }}
-              >
-                The Wedding Celebration Of
-              </motion.h5>
-              <motion.h2
-                className="font-satisfy text-6xl md:text-7xl drop-shadow-sm"
-                style={{
-                  textShadow: `0 0 32px white`,
-                  color: "transparent",
-                }}
-              >
-                Adhi & Cia
-              </motion.h2>
+              <div className="relative">
+                <motion.h5
+                  className="text-lg"
+                  style={{
+                    opacity: opacityTextHero,
+                  }}
+                >
+                  Our Wedding
+                </motion.h5>
+                <motion.h5
+                  className="absolute inset-0 text-base"
+                  style={{
+                    textShadow: `0 0 32px white`,
+                    color: 'transparent',
+                    opacity: opacityTextHeroBlur,
+                  }}
+                >
+                  The Wedding Celebration Of
+                </motion.h5>
+              </div>
+              <div className="relative">
+                <motion.h2
+                  className="font-satisfy text-6xl md:text-7xl drop-shadow-sm"
+                  style={{
+                    opacity: opacityTextHero,
+                  }}
+                >
+                  Adhi & Cia
+                </motion.h2>
+                <motion.h2
+                  className="absolute inset-0 font-satisfy text-6xl md:text-7xl drop-shadow-sm"
+                  style={{
+                    textShadow: `0 0 32px white`,
+                    color: 'transparent',
+                    opacity: opacityTextHeroBlur,
+                  }}
+                >
+                  Adhi & Cia
+                </motion.h2>
+              </div>
+            </motion.div>
+            <motion.div
+              className="absolute w-full text-zinc-300 top-1/3 "
+              style={{
+                opacity: blurTextHero,
+              }}
+            >
+              <div className="text-center text-sm w-10/12 mx-auto prose max-w-none prose-sm md:prose-lg px-6 py-4 text-slate-50 rounded-sm">
+                {/* {data?.Quotes[0]?.quoteText} */}
+                <MdFormat
+                  markdown={data?.Quotes[0]?.quoteText}
+                  remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeRaw]}
+                />
+                <p className="font-semibold">{data?.Quotes[0]?.authorQuote}</p>
+              </div>
+              <motion.div className="flex justify-center w-full">
+                <motion.div
+                  style={{
+                    width: 1,
+                    height: lineTextHero,
+                  }}
+                  className="bg-slate-50 h-full"
+                />
+              </motion.div>
+            </motion.div>
+            <motion.div
+              className="absolute md:hidden bottom-6 aspect-1 z-30 flex justify-center w-full h-[75px]"
+              style={{
+                opacity: opacityTextHero,
+              }}
+            >
+              <Image
+                src="/gif/swipeUpWhite.gif"
+                alt="swipeUpWhite"
+                layout="fixed"
+                width={75}
+                height={75}
+                className="object-cover opacity-50"
+              />
+            </motion.div>
+            <motion.div
+              className="absolute hidden bottom-6 aspect-1 z-30 md:flex justify-center w-full h-[75px]"
+              style={{
+                opacity: opacityTextHero,
+              }}
+            >
+              <Image
+                src="/gif/scrollDownWhite.gif"
+                alt="scrollDownWhite"
+                layout="fixed"
+                width={75}
+                height={75}
+                className="object-cover"
+              />
             </motion.div>
           </div>
         </motion.div>
-        {/* <div className="h-screen w-full bg-slate-950"></div> */}
-      </div>
+      </section>
+      <section className="max-w-screen-md w-full bg-slate-950 text-zinc-300 mx-auto min-h-screen py-8">
+        <div className="text-center text-sm w-10/12 mx-auto prose max-w-none prose-sm md:prose-lg bg-zinc-500 px-6 py-4 text-slate-50 rounded-sm">
+          <p className="font-semibold">Section 2</p>
+        </div>
+      </section>
     </div>
   );
 }
