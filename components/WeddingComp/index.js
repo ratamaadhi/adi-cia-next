@@ -73,7 +73,11 @@ function WeddingComp({ data }) {
           <div className="w-full h-screen sticky overflow-hidden top-0">
             <motion.div
               className="absolute z-0 top-0 left-0 w-full h-full"
-              style={{ scale: scaleImgSec1, opacity: opacityImgSec1 }}
+              style={{
+                scale: scaleImgSec1,
+                opacity: opacityImgSec1,
+                willChange: 'transform',
+              }}
             >
               <motion.div className="relative w-full h-full filter blur-[0.75px]">
                 <div className="absolute w-full h-5/6 bottom-0 left-0 z-10 bg-gradient-to-t from-slate-950 via-slate-950/30" />
@@ -114,6 +118,7 @@ function WeddingComp({ data }) {
               className="w-full h-screen absolute inset-0 -top-6 z-10 text-white text-center flex flex-col justify-center items-center gap-4"
               style={{
                 scale: scaleTextHero,
+                willChange: 'transform',
               }}
             >
               <div className="relative">
@@ -121,6 +126,7 @@ function WeddingComp({ data }) {
                   className="text-lg"
                   style={{
                     opacity: opacityTextHero,
+                    willChange: 'transform',
                   }}
                 >
                   Our Wedding
@@ -131,6 +137,7 @@ function WeddingComp({ data }) {
                     textShadow: `0 0 32px white`,
                     color: 'transparent',
                     opacity: opacityTextHeroBlur,
+                    willChange: 'transform',
                   }}
                 >
                   The Wedding Celebration Of
@@ -141,6 +148,7 @@ function WeddingComp({ data }) {
                   className="font-satisfy text-6xl md:text-7xl drop-shadow-sm"
                   style={{
                     opacity: opacityTextHero,
+                    willChange: 'transform',
                   }}
                 >
                   Adhi & Cia
@@ -151,6 +159,7 @@ function WeddingComp({ data }) {
                     textShadow: `0 0 32px white`,
                     color: 'transparent',
                     opacity: opacityTextHeroBlur,
+                    willChange: 'transform',
                   }}
                 >
                   Adhi & Cia
@@ -161,6 +170,7 @@ function WeddingComp({ data }) {
               className="absolute w-full text-zinc-300 top-1/3 "
               style={{
                 opacity: blurTextHero,
+                willChange: 'transform',
               }}
             >
               <div className="text-center text-sm w-10/12 mx-auto prose max-w-none prose-sm md:prose-lg px-6 py-4 text-slate-50 rounded-sm">
@@ -177,6 +187,7 @@ function WeddingComp({ data }) {
                   style={{
                     width: 1,
                     height: lineTextHero,
+                    willChange: 'transform',
                   }}
                   className="bg-slate-50 h-full"
                 />
@@ -186,6 +197,7 @@ function WeddingComp({ data }) {
               className="absolute md:hidden bottom-6 aspect-1 z-30 flex justify-center w-full h-[75px]"
               style={{
                 opacity: opacityTextHero,
+                willChange: 'transform',
               }}
             >
               <Image
@@ -201,6 +213,7 @@ function WeddingComp({ data }) {
               className="absolute hidden bottom-6 aspect-1 z-30 md:flex justify-center w-full h-[75px]"
               style={{
                 opacity: opacityTextHero,
+                willChange: 'transform',
               }}
             >
               <Image
