@@ -16,6 +16,7 @@ import { shimmer, toBase64 } from '../../util/toBase64';
 import MdFormat from '../../util/md';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
+import flowerFrame1 from '../../public/img/wedding/flowerFrame1.svg';
 
 function WeddingComp({ data }) {
   console.log('WeddingComp data', data);
@@ -41,7 +42,10 @@ function WeddingComp({ data }) {
   });
 
   const scaleTextHero = useTransform(scrlYHero, [0, 0.4], ['100%', '250%']);
+  const scaleFrameFlower = useTransform(scrlYHero, [0, 0.4], ['100%', '400%']);
   const opacityTextHero = useTransform(scrlYHero, [0, 0.4], ['100%', '0%']);
+  const opacityTextHeroMin = useTransform(scrlYHero, [0, 0.4], ['-100%', '200%']);
+  const lineTextHeroPlus = useTransform(scrlYHero, [0, 0.4], ['', '400%']);
   const opacityTextHeroBlur = useTransform(scrlYHero, [0, 1], ['100%', '0%']);
   const blurTextHero = useTransform(scrlYHero, [0.4, 1], ['0%', '100%']);
   const lineTextHero = useTransform(scrlYHero, [0.4, 1], ['0px', '180px']);
@@ -115,55 +119,66 @@ function WeddingComp({ data }) {
               </motion.div>
             </motion.div> */}
             <motion.div
-              className="w-full h-screen absolute inset-0 -top-6 z-10 text-white text-center flex flex-col justify-center items-center gap-4"
+              className="w-full h-screen absolute inset-0 -top-6 z-10 text-white text-center flex flex-col justify-center items-center gap-1"
               style={{
-                scale: scaleTextHero,
                 willChange: 'transform',
               }}
             >
+              <div className="absolute z-[9] top-0 left-0 w-full h-full">
+                <div className="relative w-auto h-full flex items-center justify-center">
+                  <motion.img
+                    src={'/img/wedding/flowerFrame1.svg'}
+                    alt="flower frame 1"
+                    style={{
+                      width: '100%',
+                      opacity: opacityTextHeroBlur,
+                      willChange: 'transform',
+                      scale: scaleFrameFlower,
+                    }}
+                  />
+                </div>
+              </div>
               <div className="relative">
                 <motion.h5
-                  className="text-lg"
+                  className="text-sm sm:text-base"
                   style={{
                     opacity: opacityTextHero,
+                    scale: scaleTextHero,
                     willChange: 'transform',
                   }}
                 >
                   Our Wedding
                 </motion.h5>
-                <motion.h5
-                  className="absolute inset-0 text-base"
-                  style={{
-                    textShadow: `0 0 32px white`,
-                    color: 'transparent',
-                    opacity: opacityTextHeroBlur,
-                    willChange: 'transform',
-                  }}
-                >
-                  The Wedding Celebration Of
-                </motion.h5>
               </div>
-              <div className="relative">
-                <motion.h2
-                  className="font-satisfy text-6xl md:text-7xl drop-shadow-sm"
+              <div className="relative text-center">
+                <motion.div
+                  className="h-[1px] bg-slate-50"
                   style={{
+                    width: opacityTextHero,
+                    translateX: opacityTextHeroMin,
                     opacity: opacityTextHero,
                     willChange: 'transform',
                   }}
-                >
-                  Adhi & Cia
-                </motion.h2>
+                />
                 <motion.h2
-                  className="absolute inset-0 font-satisfy text-6xl md:text-7xl drop-shadow-sm"
+                  className="font-satisfy text-5xl sm:text-6xl md:text-7xl drop-shadow-sm"
                   style={{
-                    textShadow: `0 0 32px white`,
-                    color: 'transparent',
-                    opacity: opacityTextHeroBlur,
+                    opacity: opacityTextHero,
                     willChange: 'transform',
+                    scale: scaleTextHero,
                   }}
                 >
                   Adhi & Cia
                 </motion.h2>
+                <motion.div
+                  className="h-[1px] bg-slate-50"
+                  style={{
+                    width: opacityTextHero,
+                    translateX: opacityTextHero,
+                    opacity: opacityTextHero,
+                    willChange: 'transform',
+                  }}
+                />
               </div>
             </motion.div>
             <motion.div
@@ -173,7 +188,7 @@ function WeddingComp({ data }) {
                 willChange: 'transform',
               }}
             >
-              <div className="text-center text-sm w-10/12 mx-auto prose max-w-none prose-sm md:prose-lg px-6 py-4 text-slate-50 rounded-sm">
+              <div className="text-center text-sm w-11/12 mx-auto prose max-w-none prose-sm md:prose-lg px-6 py-4 text-slate-50 rounded-sm">
                 {/* {data?.Quotes[0]?.quoteText} */}
                 <MdFormat
                   markdown={data?.Quotes[0]?.quoteText}
@@ -228,8 +243,8 @@ function WeddingComp({ data }) {
           </div>
         </motion.div>
       </section>
-      <section className="max-w-screen-md w-full bg-slate-950 text-zinc-300 mx-auto min-h-screen py-8">
-        <div className="text-center text-sm w-10/12 mx-auto prose max-w-none prose-sm md:prose-lg bg-zinc-500 px-6 py-4 text-slate-50 rounded-sm">
+      <section className="max-w-screen-sm w-full bg-slate-950 text-zinc-300 mx-auto min-h-screen py-8">
+        <div className="text-center text-sm w-11/12 mx-auto prose max-w-none prose-sm md:prose-lg bg-zinc-500 px-6 py-4 text-slate-50 rounded-sm">
           <p className="font-semibold">Section 2</p>
         </div>
       </section>

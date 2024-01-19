@@ -4,8 +4,10 @@ import Image from 'next/image';
 import { myLoader } from '../../../lib/media';
 import { motion } from 'framer-motion';
 import { BsEnvelopePaperHeart } from 'react-icons/bs';
+import useLockBodyScroll from '../../../util/hooks/useLockBodyScroll.js';
 
 function InvitationPopup({ setOpen = () => {}, open = true, name = '', data }) {
+  useLockBodyScroll();
   return (
     <motion.div
       initial={{ opacity: 0 }}
