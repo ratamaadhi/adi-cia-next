@@ -40,8 +40,12 @@ function InvitationPopup({ setOpen = () => {}, open = true, name = '', data }) {
         exit={{ opacity: 0, y: 100, scale: 6, transition: { duration: 1.25 } }}
         className="absolute inset-0 z-30 bg-palette-moss/30 h-full w-full p-6 flex flex-col justify-center items-center text-white gap-2 font-poppins"
       >
-        <div>Dear, </div>
-        <div className="font-semibold text-xl">{name ?? ''}</div>
+        {name && (
+          <>
+            <div>Dear, </div>
+            <div className="font-semibold text-xl">{name ?? ''}</div>
+          </>
+        )}
         <div className="mb-12">You Are Invited!</div>
         <div className="">The Wedding Celebration of</div>
         <div className="text-4xl font-satisfy">Adhi & Cia</div>

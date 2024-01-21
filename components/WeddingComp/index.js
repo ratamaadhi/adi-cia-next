@@ -18,8 +18,12 @@ import MdFormat from '../../util/md';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { useInView } from 'react-intersection-observer';
-import { FaInstagram } from 'react-icons/fa';
+import { FaInstagram, FaMapMarkerAlt } from 'react-icons/fa';
 import { MdOutlineMusicNote, MdOutlineMusicOff } from 'react-icons/md';
+import { Svg1 } from './svgs';
+import moment from 'moment';
+import 'moment/locale/id.js';
+moment.locale('id');
 
 function WeddingComp({ data }) {
   console.log('WeddingComp data', data);
@@ -30,6 +34,13 @@ function WeddingComp({ data }) {
   // );
 
   const [openInvite, SetOpenInvite] = useState(false);
+  const [showCountDown, SetShowCountDown] = useState(false);
+  const [countDownDay, SetCountDownDay] = useState({
+    days: 0,
+    hours: 0,
+    minutes: 0,
+    seconds: 0,
+  });
 
   const route = useRouter();
   const { query, isReady } = route;
@@ -188,12 +199,12 @@ function WeddingComp({ data }) {
     };
 
     setupAudio();
+    const timer = setInterval(function () {
+      countDown(data?.akadTime);
+    }, 1000);
 
     return () => {
-      // Clean up the audio when the component unmounts
-      if (audio) {
-        audio.pause();
-      }
+      clearTimeout(timer);
     };
   }, []);
 
@@ -237,10 +248,41 @@ function WeddingComp({ data }) {
         audio.removeEventListener('ended', handleAudioEnd);
         audio.removeEventListener('playing', handleAudioPlay);
         audio.removeEventListener('pause', handleAudioPause);
-        audio.pause();
       };
     }
   }, [audio, openInvite]);
+
+  function countDown(time = new Date()) {
+    var eventTime, currentTime, duration, interval, intervalId;
+
+    interval = 1000; // 1 second
+
+    // calculate difference between two times
+    eventTime = moment(new Date());
+    // based on time set in user's computer time / OS
+    currentTime = moment(time);
+    // get duration between two times
+    duration = moment.duration(currentTime.diff(eventTime));
+
+    // loop to countdown every 1 second
+    // get updated duration
+    duration = moment.duration(duration - interval, 'milliseconds');
+
+    // if duration is >= 0
+    if (duration.asSeconds() <= 0) {
+      clearInterval(intervalId);
+      SetShowCountDown(false);
+    } else {
+      SetShowCountDown(true);
+      // otherwise, show the updated countdown
+      SetCountDownDay({
+        days: duration.days(),
+        hours: duration.hours(),
+        minutes: duration.minutes(),
+        seconds: duration.seconds(),
+      });
+    }
+  }
 
   return (
     <div className="relative bg-palette-stone min-h-screen w-full">
@@ -251,12 +293,8 @@ function WeddingComp({ data }) {
           }`}
           onClick={() => (isPlaying ? audio.pause() : audio.play())}
         >
-          {!isPlaying && (
-            <MdOutlineMusicNote size={24} />
-          )}
-          {isPlaying && (
-            <MdOutlineMusicOff size={24} />
-          )}
+          {!isPlaying && <MdOutlineMusicNote size={24} />}
+          {isPlaying && <MdOutlineMusicOff size={24} />}
         </div>
       )}
       <AnimatePresence initial={false}>
@@ -469,7 +507,7 @@ function WeddingComp({ data }) {
                 animate={imageSection2Control}
                 exit={variantImageSection.imageSection2Off}
                 transition={variantImageSection.transition1}
-                className="text-center text-sm w-full font-poppins prose max-w-none prose-sm md:prose-lg bg-white px-6 pb-6 pt-32 text-palette-slate z-10 absolute bottom-0 left-0"
+                className="text-center text-sm w-full prose max-w-none prose-sm md:prose-lg bg-white px-6 pb-6 pt-32 text-palette-slate z-10 absolute bottom-0 left-0"
               >
                 <MdFormat
                   markdown={data?.Quotes[1]?.quoteText}
@@ -486,8 +524,8 @@ function WeddingComp({ data }) {
           </AnimatePresence>
         </div>
       </section>
-      <section className="w-full min-h-screen bg-palette-zinc pb-60">
-        <div className="max-w-screen-sm w-full h-full mx-auto relative pb-8 pt-16 bg-white">
+      <section className="w-full min-h-screen bg-palette-zinc overflow-hidden">
+        <div className="max-w-screen-sm w-full h-full mx-auto relative py-28 bg-white">
           <div className="w-full flex flex-col gap-4">
             {/* mempelai pria */}
             <div
@@ -639,6 +677,96 @@ function WeddingComp({ data }) {
               </motion.div>
             </div>
           </div>
+        </div>
+      </section>
+      <section className="w-full min-h-screen bg-gradient-to-b from-palette-zinc to-palette-slate text-zinc-300 pb-28 overflow-hidden">
+        <div className="max-w-screen-sm w-full h-full mx-auto relative py-16">
+          {/* AKAD */}
+          <div className="w-11/12 sm:w-full mx-auto bg-palette-stone px-4 py-8">
+            <div className=" w-16 h-16 mx-auto">
+              <Svg1 />
+            </div>
+            <div className="flex flex-col gap-3">
+              <div className="flex flex-col max-w-sm w-full mx-auto relative px-4 py-2">
+                <div className="self-center relative">
+                  <span className="relative left text-6xl font-poppins font-bold opacity-15">
+                    AKAD
+                  </span>
+                  <span className="absolute left-2 text-4xl top-1 font-playFair">
+                    Akad
+                  </span>
+                  <span className="absolute left-[4.5rem] top-5 text-4xl font-sacramento">
+                    Nikah
+                  </span>
+                </div>
+                <div className="absolute left-[192px] top-[52px] font-playFair text-4xl text-center">
+                  &
+                </div>
+                <div className="relative self-center">
+                  <span className="relative left text-6xl font-poppins font-bold opacity-15">
+                    RESEPSI
+                  </span>
+                  <span className="absolute -left-3 text-5xl top-1 font-sacramento">
+                    Resepsi
+                  </span>
+                  <span className="absolute left-[6.7rem] top-5 text-3xl font-playFair">
+                    Pernikahan
+                  </span>
+                </div>
+              </div>
+              <div className="self-center font-playFair text-center tracking-wide">
+                <div>{moment(data?.akadTime).format('dddd, DD MMMM YYYY')}</div>
+                <div>{moment(data?.akadTime).format('hh:mm')} WIB</div>
+              </div>
+              <div className="self-center font-playFair text-center tracking-wide flex flex-col gap-2">
+                <div className="font-bold">{data?.akadPlaceName}</div>
+                <div className="font-poppins text-xs">
+                  {data?.akadPlaceNameDetail}
+                </div>
+                <div className="w-full flex justify-center mt-4">
+                  <a
+                    href={`${data?.akadPlaceGmap}`}
+                    target="_blank"
+                    className="no-underline text-palette-slate bg-emerald-50 border border-palette-slate rounded-md px-3 py-2 text-sm shadow-palette-slate/20 shadow-lg flex items-center gap-2"
+                  >
+                    <FaMapMarkerAlt size={16} />{' '}
+                    <span className="font-poppins text-xs font-semibold">
+                      Lihat Lokasi
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <div></div>
+              <div></div>
+            </div>
+          </div>
+          {/* END AKAD */}
+
+          {showCountDown && (
+            <div className="w-11/12 sm:w-full mx-auto bg-palette-stone px-4 py-2 mt-2">
+              <div className="font-playFair text-2xl tracking-wide text-center mb-4">
+                Hari yang ditunggu
+              </div>
+              <div className="w-full flex gap-2 justify-center text-center font-playFair tracking-wide">
+                <div className="px-2 py-1 bg-palette-slate/30 flex-1">
+                  <div className="text-3xl">{countDownDay.days}</div>
+                  <div className="">Days</div>
+                </div>
+                <div className="px-2 py-1 bg-palette-slate/30 flex-1">
+                  <div className="text-3xl">{countDownDay.hours}</div>
+                  <div className="">Hours</div>
+                </div>
+                <div className="px-2 py-1 bg-palette-slate/30 flex-1">
+                  <div className="text-3xl">{countDownDay.minutes}</div>
+                  <div className="">Mins</div>
+                </div>
+                <div className="px-2 py-1 bg-palette-slate/30 flex-1">
+                  <div className="text-3xl">{countDownDay.seconds}</div>
+                  <div className="">Secs</div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
     </div>
