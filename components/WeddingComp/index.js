@@ -24,6 +24,12 @@ import { Svg1 } from './svgs';
 import moment from 'moment';
 import 'moment/locale/id.js';
 import Masonry from 'react-masonry-css';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import SwiperCore, { Autoplay, EffectCoverflow } from 'swiper';
+import 'swiper/swiper-bundle.css';
+
+SwiperCore.use([Autoplay]);
+
 moment.locale('id');
 
 function WeddingComp({ data }) {
@@ -904,8 +910,45 @@ function WeddingComp({ data }) {
           </AnimatePresence>
         </div>
       </section>
-      <section className="w-full bg-gradient-to-b from-palette-slate to-palette-navi text-zinc-300 pb-16 overflow-hidden px-4">
-        <div className='w-full sm:max-w-screen-sm mx-auto'>
+      <section className="w-full bg-gradient-to-b from-palette-slate to-palette-navi text-zinc-300 pb-16 overflow-hidden">
+        <div className="relative w-full h-auto overflow-hidden max-w-screen-sm mx-auto pb-4">
+          <Swiper
+            modules={[EffectCoverflow]}
+            loop={true}
+            autoplay={{ delay: 3000, disableOnInteraction: false }}
+            centeredSlides={true}
+            slidesPerView={'auto'}
+            spaceBetween={12}
+          >
+            {data?.prewedPhoto.map((photo) => {
+              return (
+                <SwiperSlide key={photo._id}>
+                  <div
+                    key={photo.hash}
+                    className="relative aspect-w-3 aspect-h-4"
+                  >
+                    <Image
+                      src={photo.url}
+                      loader={myLoader}
+                      alt={photo.hash}
+                      layout="fill"
+                      placeholder="blur"
+                      blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                        shimmer(
+                          photo.formats.thumbnail.width,
+                          photo.formats.thumbnail.height
+                        )
+                      )}`}
+                      className={`w-full h-full object-cover`}
+                    />
+                    <div className="absolute bottom-0 w-full h-full bg-gradient-to-t from-palette-navi/80 via-palette-slate/30 to-transparent" />
+                  </div>
+                </SwiperSlide>
+              );
+            })}
+          </Swiper>
+        </div>
+        <div className="w-full sm:max-w-screen-sm mx-auto px-4 sm:px-0">
           <Masonry
             breakpointCols={2}
             className="my-masonry-grid"
@@ -913,7 +956,10 @@ function WeddingComp({ data }) {
           >
             {data?.prewedPhoto.map((photo) => {
               return (
-                <div key={photo.hash} className="relative w-full h-auto shadow-lg">
+                <div
+                  key={photo.hash}
+                  className="relative w-full h-auto shadow-lg"
+                >
                   <Image
                     src={photo.url}
                     loader={myLoader}
