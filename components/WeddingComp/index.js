@@ -23,6 +23,7 @@ import { MdOutlineMusicNote, MdOutlineMusicOff } from 'react-icons/md';
 import { Svg1 } from './svgs';
 import moment from 'moment';
 import 'moment/locale/id.js';
+import Masonry from 'react-masonry-css';
 moment.locale('id');
 
 function WeddingComp({ data }) {
@@ -69,8 +70,11 @@ function WeddingComp({ data }) {
   const scaleImgSec1 = useTransform(scrlYHero, [0, 1], ['100%', '120%']);
   const opacityImgSec1 = useTransform(scrlYHero, [0.8, 1], ['100%', '0%']);
 
-  const imageSection2Inview = useInView({ threshold: 0.8 });
+  const imageSection2Inview = useInView({ threshold: 0.3 });
   const imageSection2Control = useAnimation();
+
+  const imageSection3Inview = useInView({ threshold: 0.3 });
+  const imageSection3Control = useAnimation();
 
   const variantImageSection = {
     imageSection2Init: {
@@ -107,7 +111,16 @@ function WeddingComp({ data }) {
       imageSection2Control.start(variantImageSection.imageSection2Off);
       imageSection2Control.start(variantImageSection.imageSection2Off);
     }
-  }, [imageSection2Inview]);
+
+    if (imageSection3Inview.inView) {
+      imageSection3Control.start({
+        scale: 1.05,
+        transition: { duration: 1.03 },
+      });
+    } else {
+      imageSection3Control.start({ scale: 1, transition: { duration: 0.5 } });
+    }
+  }, [imageSection2Inview.inView, imageSection3Inview.inView]);
 
   const imageCPPInview = useInView({ threshold: 0.5, triggerOnce: true });
   const imageCPPControl = useAnimation();
@@ -177,6 +190,55 @@ function WeddingComp({ data }) {
       imageCPWControl.start(variantimageCPP.imageSectionOff);
     }
   }, [imageCPPInview.inView, imageCPWInview.inView]);
+
+  const akadInfoIinview = useInView({ threshold: 0.4, triggerOnce: true });
+  const akadInfoControl = useAnimation();
+
+  const akadInfoVariants = {
+    hiddenLeft: {
+      opacity: 0,
+      x: -100,
+    },
+    hiddenRigt: {
+      opacity: 0,
+      x: 100,
+    },
+    hiddenTop: {
+      opacity: 0,
+      y: -100,
+    },
+    hiddenBottom: {
+      opacity: 0,
+      y: 100,
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+    },
+    transition: {
+      opacity: {
+        delay: 1,
+        duration: 1,
+      },
+      y: {
+        delay: 1,
+        duration: 1.5,
+      },
+      x: {
+        delay: 1,
+        duration: 1.5,
+      },
+      type: 'spring',
+      bounce: 0.2,
+    },
+  };
+
+  useEffect(() => {
+    if (akadInfoIinview.inView) {
+      akadInfoControl.start(akadInfoVariants.visible);
+    }
+  }, [akadInfoIinview.inView]);
 
   useEffect(() => {
     document
@@ -439,7 +501,7 @@ function WeddingComp({ data }) {
               </motion.div>
             </motion.div>
             <motion.div
-              className="absolute md:hidden bottom-6 aspect-1 z-30 flex justify-center w-full h-[75px]"
+              className="fixed md:hidden bottom-6 left-0 aspect-1 z-30 flex justify-center w-full h-[75px]"
               style={{
                 opacity: opacityTextHero,
                 willChange: 'transform',
@@ -455,7 +517,7 @@ function WeddingComp({ data }) {
               />
             </motion.div>
             <motion.div
-              className="absolute hidden bottom-6 aspect-1 z-30 md:flex justify-center w-full h-[75px]"
+              className="fixed hidden bottom-6 left-0 aspect-1 z-30 md:flex justify-center w-full h-[75px]"
               style={{
                 opacity: opacityTextHero,
                 willChange: 'transform',
@@ -498,6 +560,7 @@ function WeddingComp({ data }) {
                 )}`}
                 className={`w-full h-full object-cover`}
               />
+              <div className="absolute bottom-0 w-full h-full bg-gradient-to-t from-palette-zinc/80 via-palette-stone/30 to-transparent" />
             </motion.div>
           </div>
           <AnimatePresence>
@@ -679,16 +742,29 @@ function WeddingComp({ data }) {
           </div>
         </div>
       </section>
-      <section className="w-full min-h-screen bg-gradient-to-b from-palette-zinc to-palette-slate text-zinc-300 pb-28 overflow-hidden">
-        <div className="max-w-screen-sm w-full h-full mx-auto relative py-16">
+      <section className="w-full bg-gradient-to-b from-palette-zinc to-palette-slate text-zinc-300 pb-28 overflow-hidden">
+        <div className="max-w-screen-sm w-full h-full mx-auto relative pt-16">
           {/* AKAD */}
-          <div className="w-11/12 sm:w-full mx-auto bg-palette-stone px-4 py-8">
-            <div className=" w-16 h-16 mx-auto">
+          <motion.div
+            ref={akadInfoIinview.ref}
+            initial={akadInfoVariants.hiddenBottom}
+            animate={akadInfoControl}
+            exit={akadInfoVariants.hiddenBottom}
+            transition={{ ...akadInfoVariants.transition, delay: 0.5 }}
+            className="w-11/12 sm:w-full mx-auto bg-palette-stone px-4 py-8"
+          >
+            <div className="w-16 h-16 mx-auto">
               <Svg1 />
             </div>
-            <div className="flex flex-col gap-3">
+            <div className="w-full flex flex-col gap-3">
               <div className="flex flex-col max-w-sm w-full mx-auto relative px-4 py-2">
-                <div className="self-center relative">
+                <motion.div
+                  initial={akadInfoVariants.hiddenLeft}
+                  animate={akadInfoControl}
+                  exit={akadInfoVariants.hiddenLeft}
+                  transition={akadInfoVariants.transition}
+                  className="self-center relative"
+                >
                   <span className="relative left text-6xl font-poppins font-bold opacity-15">
                     AKAD
                   </span>
@@ -698,11 +774,23 @@ function WeddingComp({ data }) {
                   <span className="absolute left-[4.5rem] top-5 text-4xl font-sacramento">
                     Nikah
                   </span>
-                </div>
-                <div className="absolute left-[192px] top-[52px] font-playFair text-4xl text-center">
+                </motion.div>
+                <motion.div
+                  initial={akadInfoVariants.hiddenBottom}
+                  animate={akadInfoControl}
+                  exit={akadInfoVariants.hiddenBottom}
+                  transition={akadInfoVariants.transition}
+                  className="absolute left-[192px] top-[52px] font-playFair text-4xl text-center"
+                >
                   &
-                </div>
-                <div className="relative self-center">
+                </motion.div>
+                <motion.div
+                  initial={akadInfoVariants.hiddenRigt}
+                  animate={akadInfoControl}
+                  exit={akadInfoVariants.hiddenRigt}
+                  transition={akadInfoVariants.transition}
+                  className="relative self-center"
+                >
                   <span className="relative left text-6xl font-poppins font-bold opacity-15">
                     RESEPSI
                   </span>
@@ -712,13 +800,25 @@ function WeddingComp({ data }) {
                   <span className="absolute left-[6.7rem] top-5 text-3xl font-playFair">
                     Pernikahan
                   </span>
-                </div>
+                </motion.div>
               </div>
-              <div className="self-center font-playFair text-center tracking-wide">
+              <motion.div
+                initial={akadInfoVariants.hiddenBottom}
+                animate={akadInfoControl}
+                exit={akadInfoVariants.hiddenBottom}
+                transition={{ ...akadInfoVariants.transition, delay: 1.5 }}
+                className="self-center font-playFair text-center tracking-wide"
+              >
                 <div>{moment(data?.akadTime).format('dddd, DD MMMM YYYY')}</div>
                 <div>{moment(data?.akadTime).format('hh:mm')} WIB</div>
-              </div>
-              <div className="self-center font-playFair text-center tracking-wide flex flex-col gap-2">
+              </motion.div>
+              <motion.div
+                initial={akadInfoVariants.hiddenBottom}
+                animate={akadInfoControl}
+                exit={akadInfoVariants.hiddenBottom}
+                transition={{ ...akadInfoVariants.transition, delay: 2 }}
+                className="self-center font-playFair text-center tracking-wide flex flex-col gap-2"
+              >
                 <div className="font-bold">{data?.akadPlaceName}</div>
                 <div className="font-poppins text-xs">
                   {data?.akadPlaceNameDetail}
@@ -735,38 +835,105 @@ function WeddingComp({ data }) {
                     </span>
                   </a>
                 </div>
-              </div>
-              <div></div>
-              <div></div>
+              </motion.div>
             </div>
-          </div>
+          </motion.div>
+          <motion.div
+            ref={imageSection3Inview.ref}
+            initial={{
+              scale: 1,
+            }}
+            animate={imageSection3Control}
+            transition={{
+              delay: 0.5,
+            }}
+            className="relative w-11/12 sm:w-full mx-auto h-auto overflow-hidden border-[16px] border-emerald-50 shadow-xl"
+          >
+            <Image
+              src={data.imageSection3.url}
+              loader={myLoader}
+              alt={data.imageSection3.hash}
+              layout="responsive"
+              height={data.imageSection3.height}
+              width={data.imageSection3.width}
+              placeholder="blur"
+              blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                shimmer(
+                  data.imageSection3.formats.thumbnail.width,
+                  data.imageSection3.formats.thumbnail.height
+                )
+              )}`}
+              className={`w-full h-full object-cover`}
+            />
+            <div className="absolute bottom-0 w-full h-full bg-gradient-to-t from-palette-slate/80 via-palette-zinc/30 to-transparent" />
+          </motion.div>
           {/* END AKAD */}
 
-          {showCountDown && (
-            <div className="w-11/12 sm:w-full mx-auto bg-palette-stone px-4 py-2 mt-2">
-              <div className="font-playFair text-2xl tracking-wide text-center mb-4">
-                Hari yang ditunggu
-              </div>
-              <div className="w-full flex gap-2 justify-center text-center font-playFair tracking-wide">
-                <div className="px-2 py-1 bg-palette-slate/30 flex-1">
-                  <div className="text-3xl">{countDownDay.days}</div>
-                  <div className="">Days</div>
+          <AnimatePresence>
+            {showCountDown && (
+              <motion.div
+                initial={akadInfoVariants.hiddenBottom}
+                animate={akadInfoControl}
+                exit={akadInfoVariants.hiddenBottom}
+                transition={{ ...akadInfoVariants.transition, delay: 2 }}
+                className="w-11/12 sm:w-full mx-auto bg-palette-stone px-4 pb-2 mt-2 pt-4 sm:pt-8"
+              >
+                <div className="font-playFair text-2xl tracking-wide text-center mb-4">
+                  Hari yang ditunggu
                 </div>
-                <div className="px-2 py-1 bg-palette-slate/30 flex-1">
-                  <div className="text-3xl">{countDownDay.hours}</div>
-                  <div className="">Hours</div>
+                <div className="w-full flex gap-2 justify-center text-center font-playFair tracking-wide">
+                  <div className="px-2 py-1 bg-palette-slate/30 flex-1">
+                    <div className="text-3xl">{countDownDay.days}</div>
+                    <div className="">Days</div>
+                  </div>
+                  <div className="px-2 py-1 bg-palette-slate/30 flex-1">
+                    <div className="text-3xl">{countDownDay.hours}</div>
+                    <div className="">Hours</div>
+                  </div>
+                  <div className="px-2 py-1 bg-palette-slate/30 flex-1">
+                    <div className="text-3xl">{countDownDay.minutes}</div>
+                    <div className="">Mins</div>
+                  </div>
+                  <div className="px-2 py-1 bg-palette-slate/30 flex-1">
+                    <div className="text-3xl">{countDownDay.seconds}</div>
+                    <div className="">Secs</div>
+                  </div>
                 </div>
-                <div className="px-2 py-1 bg-palette-slate/30 flex-1">
-                  <div className="text-3xl">{countDownDay.minutes}</div>
-                  <div className="">Mins</div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </section>
+      <section className="w-full bg-gradient-to-b from-palette-slate to-palette-navi text-zinc-300 pb-16 overflow-hidden px-4">
+        <div className='w-full sm:max-w-screen-sm mx-auto'>
+          <Masonry
+            breakpointCols={2}
+            className="my-masonry-grid"
+            columnClassName="my-masonry-grid_column"
+          >
+            {data?.prewedPhoto.map((photo) => {
+              return (
+                <div key={photo.hash} className="relative w-full h-auto shadow-lg">
+                  <Image
+                    src={photo.url}
+                    loader={myLoader}
+                    alt={photo.hash}
+                    width={photo.width}
+                    height={photo.height}
+                    layout="responsive"
+                    placeholder="blur"
+                    blurDataURL={`data:image/svg+xml;base64,${toBase64(
+                      shimmer(
+                        photo.formats.thumbnail.width,
+                        photo.formats.thumbnail.height
+                      )
+                    )}`}
+                    className={`w-full h-full object-cover`}
+                  />
                 </div>
-                <div className="px-2 py-1 bg-palette-slate/30 flex-1">
-                  <div className="text-3xl">{countDownDay.seconds}</div>
-                  <div className="">Secs</div>
-                </div>
-              </div>
-            </div>
-          )}
+              );
+            })}
+          </Masonry>
         </div>
       </section>
     </div>
