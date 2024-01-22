@@ -20,13 +20,14 @@ import rehypeRaw from 'rehype-raw';
 import { useInView } from 'react-intersection-observer';
 import { FaInstagram, FaMapMarkerAlt } from 'react-icons/fa';
 import { MdOutlineMusicNote, MdOutlineMusicOff } from 'react-icons/md';
-import { Svg1 } from './svgs';
+import { Svg1, Svg2 } from './svgs';
 import moment from 'moment';
 import 'moment/locale/id.js';
 import Masonry from 'react-masonry-css';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay, EffectCoverflow } from 'swiper';
 import 'swiper/swiper-bundle.css';
+import PreviewImage from '../PreviewImage';
 
 SwiperCore.use([Autoplay]);
 
@@ -41,6 +42,7 @@ function WeddingComp({ data }) {
   // );
 
   const [openInvite, SetOpenInvite] = useState(false);
+  const [previewPhoto, setPreviewPhoto] = useState(false);
   const [showCountDown, SetShowCountDown] = useState(false);
   const [countDownDay, SetCountDownDay] = useState({
     days: 0,
@@ -223,18 +225,8 @@ function WeddingComp({ data }) {
       y: 0,
     },
     transition: {
-      opacity: {
-        delay: 1,
-        duration: 1,
-      },
-      y: {
-        delay: 1,
-        duration: 1.5,
-      },
-      x: {
-        delay: 1,
-        duration: 1.5,
-      },
+      delay: 0.5,
+      duration: 1,
       type: 'spring',
       bounce: 0.2,
     },
@@ -576,7 +568,7 @@ function WeddingComp({ data }) {
                 animate={imageSection2Control}
                 exit={variantImageSection.imageSection2Off}
                 transition={variantImageSection.transition1}
-                className="text-center text-sm w-full prose max-w-none prose-sm md:prose-lg bg-white px-6 pb-6 pt-32 text-palette-slate z-10 absolute bottom-0 left-0"
+                className="text-center text-sm w-full prose max-w-none prose-sm md:prose-lg bg-white px-6 pb-6 pt-32 text-palette-slate z-10 absolute bottom-0 left-0 will-change-transform"
               >
                 <MdFormat
                   markdown={data?.Quotes[1]?.quoteText}
@@ -606,7 +598,7 @@ function WeddingComp({ data }) {
                 animate={imageCPPControl}
                 exit={variantimageCPP.imageSection2Off}
                 transition={variantimageCPP.transition1}
-                className="w-48 h-auto border-[16px] bg-palette-zinc border-emerald-50 self-center relative shadow-lg"
+                className="w-48 h-auto border-[16px] bg-palette-zinc border-emerald-50 self-center relative shadow-lg will-change-transform"
               >
                 <Image
                   src={data.fotoCPP.url}
@@ -630,7 +622,7 @@ function WeddingComp({ data }) {
                 animate={imageCPPControl}
                 exit={variantimageCPP.imageSection2Off}
                 transition={variantimageCPP.transition2}
-                className="w-full flex flex-col"
+                className="w-full flex flex-col will-change-transform"
               >
                 <div className="relative">
                   <div className="text-5xl text-center font-sacramento text-palette-slate font-semibold">
@@ -652,7 +644,7 @@ function WeddingComp({ data }) {
                 </div>
               </motion.div>
               <motion.div
-                className="self-center"
+                className="self-center will-change-transform"
                 initial={variantimageCPP.imageSection2Init}
                 animate={imageCPPControl}
                 exit={variantimageCPP.imageSection2Off}
@@ -684,7 +676,7 @@ function WeddingComp({ data }) {
                 animate={imageCPWControl}
                 exit={variantimageCPP.imageSection2Off}
                 transition={variantimageCPP.transition1}
-                className="w-48 h-auto border-[16px] bg-palette-zinc border-emerald-50 self-center relative shadow-lg"
+                className="w-48 h-auto border-[16px] bg-palette-zinc border-emerald-50 self-center relative shadow-lg will-change-transform"
               >
                 <Image
                   src={data.fotoCPW.url}
@@ -708,7 +700,7 @@ function WeddingComp({ data }) {
                 animate={imageCPWControl}
                 exit={variantimageCPP.imageSectionOff}
                 transition={variantimageCPP.transition2}
-                className="w-full flex flex-col"
+                className="w-full flex flex-col will-change-transform"
               >
                 <div className="relative">
                   <div className="text-5xl text-center font-sacramento text-palette-slate font-semibold">
@@ -730,7 +722,7 @@ function WeddingComp({ data }) {
                 </div>
               </motion.div>
               <motion.div
-                className="self-center"
+                className="self-center will-change-transform"
                 initial={variantimageCPP.imageSectionInit}
                 animate={imageCPWControl}
                 exit={variantimageCPP.imageSectionOff}
@@ -748,7 +740,7 @@ function WeddingComp({ data }) {
           </div>
         </div>
       </section>
-      <section className="w-full bg-gradient-to-b from-palette-zinc to-palette-slate text-zinc-300 pb-28 overflow-hidden">
+      <section className="w-full bg-gradient-to-b from-palette-zinc to-palette-slate text-zinc-300 pb-20 overflow-hidden">
         <div className="max-w-screen-sm w-full h-full mx-auto relative pt-16">
           {/* AKAD */}
           <motion.div
@@ -757,7 +749,7 @@ function WeddingComp({ data }) {
             animate={akadInfoControl}
             exit={akadInfoVariants.hiddenBottom}
             transition={{ ...akadInfoVariants.transition, delay: 0.5 }}
-            className="w-11/12 sm:w-full mx-auto bg-palette-stone px-4 py-8"
+            className="w-11/12 sm:w-full mx-auto bg-palette-stone px-4 py-8 will-change-transform"
           >
             <div className="w-16 h-16 mx-auto">
               <Svg1 />
@@ -769,9 +761,9 @@ function WeddingComp({ data }) {
                   animate={akadInfoControl}
                   exit={akadInfoVariants.hiddenLeft}
                   transition={akadInfoVariants.transition}
-                  className="self-center relative"
+                  className="self-center relative will-change-transform"
                 >
-                  <span className="relative left text-6xl font-poppins font-bold opacity-15">
+                  <span className="relative text-6xl font-poppins font-bold opacity-15">
                     AKAD
                   </span>
                   <span className="absolute left-2 text-4xl top-1 font-playFair">
@@ -786,7 +778,7 @@ function WeddingComp({ data }) {
                   animate={akadInfoControl}
                   exit={akadInfoVariants.hiddenBottom}
                   transition={akadInfoVariants.transition}
-                  className="absolute left-[192px] top-[52px] font-playFair text-4xl text-center"
+                  className="absolute left-[192px] top-[52px] font-playFair text-4xl text-center will-change-transform"
                 >
                   &
                 </motion.div>
@@ -797,7 +789,7 @@ function WeddingComp({ data }) {
                   transition={akadInfoVariants.transition}
                   className="relative self-center"
                 >
-                  <span className="relative left text-6xl font-poppins font-bold opacity-15">
+                  <span className="relative text-6xl font-poppins font-bold opacity-15">
                     RESEPSI
                   </span>
                   <span className="absolute -left-3 text-5xl top-1 font-sacramento">
@@ -813,7 +805,7 @@ function WeddingComp({ data }) {
                 animate={akadInfoControl}
                 exit={akadInfoVariants.hiddenBottom}
                 transition={{ ...akadInfoVariants.transition, delay: 1.5 }}
-                className="self-center font-playFair text-center tracking-wide"
+                className="self-center font-playFair text-center tracking-wide will-change-transform"
               >
                 <div>{moment(data?.akadTime).format('dddd, DD MMMM YYYY')}</div>
                 <div>{moment(data?.akadTime).format('hh:mm')} WIB</div>
@@ -823,7 +815,7 @@ function WeddingComp({ data }) {
                 animate={akadInfoControl}
                 exit={akadInfoVariants.hiddenBottom}
                 transition={{ ...akadInfoVariants.transition, delay: 2 }}
-                className="self-center font-playFair text-center tracking-wide flex flex-col gap-2"
+                className="self-center font-playFair text-center tracking-wide flex flex-col gap-2 will-change-transform"
               >
                 <div className="font-bold">{data?.akadPlaceName}</div>
                 <div className="font-poppins text-xs">
@@ -853,7 +845,7 @@ function WeddingComp({ data }) {
             transition={{
               delay: 0.5,
             }}
-            className="relative w-11/12 sm:w-full mx-auto h-auto overflow-hidden border-[16px] border-emerald-50 shadow-xl"
+            className="relative w-11/12 sm:w-full mx-auto h-auto overflow-hidden border-[16px] border-emerald-50 shadow-xl will-change-transform"
           >
             <Image
               src={data.imageSection3.url}
@@ -882,7 +874,7 @@ function WeddingComp({ data }) {
                 animate={akadInfoControl}
                 exit={akadInfoVariants.hiddenBottom}
                 transition={{ ...akadInfoVariants.transition, delay: 2 }}
-                className="w-11/12 sm:w-full mx-auto bg-palette-stone px-4 pb-2 mt-2 pt-4 sm:pt-8"
+                className="w-11/12 sm:w-full mx-auto bg-palette-stone px-4 pb-2 mt-2 pt-4 sm:pt-8 will-change-transform"
               >
                 <div className="font-playFair text-2xl tracking-wide text-center mb-4">
                   Hari yang ditunggu
@@ -911,6 +903,26 @@ function WeddingComp({ data }) {
         </div>
       </section>
       <section className="w-full bg-gradient-to-b from-palette-slate to-palette-navi text-zinc-300 pb-16 overflow-hidden">
+        <div className="w-16 h-16 mx-auto mb-3">
+          <Svg2 />
+        </div>
+        <motion.div
+          initial={akadInfoVariants.hiddenLeft}
+          animate={akadInfoControl}
+          exit={akadInfoVariants.hiddenLeft}
+          transition={akadInfoVariants.transition}
+          className="self-center relative w-full max-w-screen-sm mx-auto flex justify-center mb-6 will-change-transform"
+        >
+          <span className="relative text-6xl font-poppins font-bold opacity-15">
+            Gallery
+          </span>
+          <span className="absolute left-[35%] sm:left-[40%] -translate-x-1/2 text-4xl top-1 font-playFair">
+            Happy
+          </span>
+          <span className="absolute left-[55%] -translate-x-1/2 top-6 text-4xl font-sacramento">
+            Moment
+          </span>
+        </motion.div>
         <div className="relative w-full h-auto overflow-hidden max-w-screen-sm mx-auto pb-4">
           <Swiper
             modules={[EffectCoverflow]}
@@ -958,7 +970,8 @@ function WeddingComp({ data }) {
               return (
                 <div
                   key={photo.hash}
-                  className="relative w-full h-auto shadow-lg"
+                  className="relative w-full h-auto shadow-lg cursor-pointer"
+                  onClick={() => setPreviewPhoto(photo)}
                 >
                   <Image
                     src={photo.url}
@@ -982,6 +995,16 @@ function WeddingComp({ data }) {
           </Masonry>
         </div>
       </section>
+
+      {previewPhoto && (
+        <PreviewImage
+          src={previewPhoto.url}
+          alt={previewPhoto.hash}
+          width={previewPhoto.width}
+          height={previewPhoto.height}
+          onClose={() => setPreviewPhoto(null)}
+        />
+      )}
     </div>
   );
 }
