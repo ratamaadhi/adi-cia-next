@@ -19,7 +19,7 @@ function PreviewImage({
           <MdClose size={24} className='text-white'/>
         </div>
       </div>
-      <div className="relative w-full h-auto my-auto">
+      <div className="relative w-full max-w-screen-sm mx-auto h-auto my-auto">
         <Image
           src={src}
           alt={alt}
