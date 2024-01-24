@@ -18,8 +18,9 @@ import MdFormat from '../../util/md';
 import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { useInView } from 'react-intersection-observer';
-import { FaInstagram, FaMapMarkerAlt } from 'react-icons/fa';
+import { FaInstagram, FaMapMarkerAlt, FaRegCopy } from 'react-icons/fa';
 import { MdOutlineMusicNote, MdOutlineMusicOff } from 'react-icons/md';
+import { HiOutlineCreditCard, HiOutlineGift } from 'react-icons/hi';
 import { Svg1, Svg2 } from './svgs';
 import moment from 'moment';
 import 'moment/locale/id.js';
@@ -28,6 +29,9 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import SwiperCore, { Autoplay, EffectCoverflow } from 'swiper';
 import 'swiper/swiper-bundle.css';
 import PreviewImage from '../PreviewImage';
+import ModalGift from './ModalGift';
+import { useCopyToClipboard } from '../../util/hooks';
+import Footer from '../footer';
 
 SwiperCore.use([Autoplay]);
 
@@ -42,6 +46,8 @@ function WeddingComp({ data }) {
   // );
 
   const [openInvite, SetOpenInvite] = useState(false);
+  const [openAddress, setOpenAddress] = useState(false);
+  const [openBank, setOpenBank] = useState(false);
   const [previewPhoto, setPreviewPhoto] = useState(false);
   const [showCountDown, SetShowCountDown] = useState(false);
   const [countDownDay, SetCountDownDay] = useState({
@@ -53,6 +59,13 @@ function WeddingComp({ data }) {
 
   const route = useRouter();
   const { query, isReady } = route;
+
+  const [copiedText, copyToClipboard] = useCopyToClipboard();
+  const [isCopied, setIsCopied] = useState();
+  const addressGift =
+    'Perumahan Pesona Alam Jatinangor Blok B2 no.18 Jatimukti Kec. Jatinangor, Kab. Sumedang Jawa Barat 45363';
+  const accountBCA = 2801545094;
+  const accountJenius = 90014169011;
 
   function isLoadingPage() {
     return !isReady;
@@ -867,52 +880,38 @@ function WeddingComp({ data }) {
           </motion.div>
           {/* END AKAD */}
 
-          <AnimatePresence>
-            {showCountDown && (
-              <motion.div
-                initial={akadInfoVariants.hiddenBottom}
-                animate={akadInfoControl}
-                exit={akadInfoVariants.hiddenBottom}
-                transition={{ ...akadInfoVariants.transition, delay: 2 }}
-                className="w-11/12 sm:w-full mx-auto bg-palette-stone px-4 pb-2 mt-2 pt-4 sm:pt-8 will-change-transform"
-              >
-                <div className="font-playFair text-2xl tracking-wide text-center mb-4">
-                  Hari yang ditunggu
+          {showCountDown && (
+            <div className="w-11/12 sm:w-full mx-auto bg-palette-stone px-4 pb-2 mt-2 pt-4 sm:pt-8 will-change-transform">
+              <div className="font-playFair text-2xl tracking-wide text-center mb-4">
+                Hari yang ditunggu
+              </div>
+              <div className="w-full flex gap-2 justify-center text-center font-playFair tracking-wide">
+                <div className="px-2 py-1 bg-palette-slate/30 flex-1">
+                  <div className="text-3xl">{countDownDay.days}</div>
+                  <div className="">Days</div>
                 </div>
-                <div className="w-full flex gap-2 justify-center text-center font-playFair tracking-wide">
-                  <div className="px-2 py-1 bg-palette-slate/30 flex-1">
-                    <div className="text-3xl">{countDownDay.days}</div>
-                    <div className="">Days</div>
-                  </div>
-                  <div className="px-2 py-1 bg-palette-slate/30 flex-1">
-                    <div className="text-3xl">{countDownDay.hours}</div>
-                    <div className="">Hours</div>
-                  </div>
-                  <div className="px-2 py-1 bg-palette-slate/30 flex-1">
-                    <div className="text-3xl">{countDownDay.minutes}</div>
-                    <div className="">Mins</div>
-                  </div>
-                  <div className="px-2 py-1 bg-palette-slate/30 flex-1">
-                    <div className="text-3xl">{countDownDay.seconds}</div>
-                    <div className="">Secs</div>
-                  </div>
+                <div className="px-2 py-1 bg-palette-slate/30 flex-1">
+                  <div className="text-3xl">{countDownDay.hours}</div>
+                  <div className="">Hours</div>
                 </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+                <div className="px-2 py-1 bg-palette-slate/30 flex-1">
+                  <div className="text-3xl">{countDownDay.minutes}</div>
+                  <div className="">Mins</div>
+                </div>
+                <div className="px-2 py-1 bg-palette-slate/30 flex-1">
+                  <div className="text-3xl">{countDownDay.seconds}</div>
+                  <div className="">Secs</div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </section>
       <section className="w-full bg-gradient-to-b from-palette-slate to-palette-navi text-zinc-300 pb-16 overflow-hidden">
         <div className="w-16 h-16 mx-auto mb-3">
           <Svg2 />
         </div>
-        <motion.div
-          initial={akadInfoVariants.hiddenLeft}
-          animate={akadInfoControl}
-          exit={akadInfoVariants.hiddenLeft}
-          transition={akadInfoVariants.transition}
-          className="self-center relative w-full max-w-screen-sm mx-auto flex justify-center mb-6 will-change-transform"
-        >
+        <div className="self-center relative w-full max-w-screen-sm mx-auto flex justify-center mb-6 will-change-transform">
           <span className="relative text-6xl font-poppins font-bold opacity-15">
             Gallery
           </span>
@@ -922,7 +921,7 @@ function WeddingComp({ data }) {
           <span className="absolute left-[55%] -translate-x-1/2 top-6 text-4xl font-sacramento">
             Moment
           </span>
-        </motion.div>
+        </div>
         <div className="relative w-full h-auto overflow-hidden max-w-screen-sm mx-auto pb-4">
           <Swiper
             modules={[EffectCoverflow]}
@@ -995,6 +994,208 @@ function WeddingComp({ data }) {
           </Masonry>
         </div>
       </section>
+
+      <section className="w-full bg-gradient-to-b from-palette-navi to-palette-black text-zinc-300 pt-12 pb-16 overflow-hidden space-y-8">
+        <div className="self-center relative w-full max-w-screen-sm mx-auto flex justify-center will-change-transform">
+          <span className="relative text-7xl font-playFair font-bold opacity-15 tracking-widest">
+            Gift
+          </span>
+          <span className="absolute left-[37%] sm:left-[45%] -translate-x-1/2 text-4xl top-3 font-playFair">
+            Amplop
+          </span>
+          <span className="absolute left-[62%] sm:left-[61%] -translate-x-1/2 top-8 text-4xl font-sacramento">
+            Digital
+          </span>
+        </div>
+        <div className="relative w-full max-w-screen-sm mx-auto mb-6 space-y-8">
+          <div className="w-4/5 mx-auto text-center">
+            <p className="text-xs font-poppins tracking-wide leading-relaxed">
+              Bagi keluarga dan sahabat yang ingin mengirimkan hadiah, silakan
+              mengirimkannya melalui tautan berikut:
+            </p>
+          </div>
+          <div className="w-11/12 sm:w-5/6 mx-auto flex justify-evenly">
+            <button
+              type="button"
+              className="text-palette-slate bg-emerald-50 border border-palette-slate rounded-md px-3 py-2 text-sm shadow-palette-slate/20 shadow-lg flex items-center gap-2"
+              onClick={() => {
+                setOpenAddress(true);
+                setOpenBank(false);
+              }}
+            >
+              <HiOutlineGift size={16} />
+              <span className="font-poppins text-xs font-semibold">
+                Kirim Hadiah
+              </span>
+            </button>
+            <button
+              type="button"
+              className="text-palette-slate bg-emerald-50 border border-palette-slate rounded-md px-3 py-2 text-sm shadow-palette-slate/20 shadow-lg flex items-center gap-2"
+              onClick={() => {
+                setOpenAddress(false);
+                setOpenBank(true);
+              }}
+            >
+              <HiOutlineCreditCard size={16} />
+              <span className="font-poppins text-xs font-semibold">
+                Transfer Bank
+              </span>
+            </button>
+          </div>
+        </div>
+      </section>
+      <section className="w-full pb-40 pt-16 bg-palette-black text-white font-poppins">
+        <div className="text-xs text-center" onClick={() => route.push('/')}>
+          <span className="font-semibold">Adhi & Cia</span> &copy; 2024
+        </div>
+        <div className="text-xs text-center">
+          <span className="font-semibold">Song: All The Gold - Alivan Blue</span>
+        </div>
+      </section>
+
+      <ModalGift
+        isOpen={openAddress}
+        closeModal={() => {
+          setOpenAddress(false);
+        }}
+        title="Alamat Penerima"
+      >
+        <div className="max-w-screen-sm mx-auto w-11/12 flex flex-col gap-4 font-poppins text-sm leading-relaxed">
+          <div className="text-center mb-4">
+            <div>Ratama Adhi Nugraha</div>
+            <div>085974781282</div>
+          </div>
+          <div className="text-center text-xs">{addressGift}</div>
+          <div className="self-center">
+            <button
+              type="button"
+              className="text-palette-slate bg-emerald-50 border border-palette-slate rounded-md px-3 py-2 text-sm shadow-palette-slate/20 shadow-lg flex items-center gap-2"
+              onClick={() => {
+                copyToClipboard(addressGift);
+                setIsCopied(true);
+                setTimeout(() => {
+                  setIsCopied(false);
+                }, 500);
+              }}
+            >
+              {!isCopied ? (
+                <>
+                  <FaRegCopy size={16} />
+                  <span className="font-poppins text-xs font-semibold">
+                    Copy Address
+                  </span>
+                </>
+              ) : (
+                <span className="font-poppins text-xs font-semibold opacity-55">
+                  Copy to clipboard
+                </span>
+              )}
+            </button>
+          </div>
+        </div>
+      </ModalGift>
+
+      <ModalGift
+        isOpen={openBank}
+        closeModal={() => {
+          setOpenBank(false);
+        }}
+        title="Nomor Rekening"
+      >
+        <div className="max-w-screen-sm mx-auto w-11/12 flex flex-col gap-4 font-poppins text-sm leading-relaxed py-4">
+          <div className=" aspect-h-4 w-full h-auto m-auto rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-105">
+            <img
+              className="relative object-cover w-full h-full rounded-xl"
+              src="https://i.imgur.com/kGkSg1v.png"
+            />
+
+            <div className="w-full px-8 absolute top-3 sm:top-8">
+              <div className="flex justify-between">
+                <div className="">
+                  <p className="font-light">Bank</p>
+                  <p className="font-medium text-2xl tracking-widest">BCA</p>
+                </div>
+              </div>
+              <div className="pt-1">
+                <p className="font-light">Ratama Adhi Nugraha</p>
+                <p className="font-medium tracking-more-wider">xxxxxxxxx</p>
+              </div>
+            </div>
+            <div className="absolute bottom-0.5 sm:bottom-3 left-1/2 -translate-x-1/2">
+              <button
+                type="button"
+                className="text-blue-500 bg-blue-200 rounded-md px-3 py-2 text-sm shadow-blue-200/20 shadow-lg flex items-center gap-2 scale-75 sm:scale-100"
+                onClick={() => {
+                  copyToClipboard(accountBCA);
+                  setIsCopied(true);
+                  setTimeout(() => {
+                    setIsCopied(false);
+                  }, 500);
+                }}
+              >
+                {isCopied && copiedText.text === accountBCA ? (
+                  <span className="font-poppins text-xs font-semibold opacity-55">
+                    Copy to clipboard
+                  </span>
+                ) : (
+                  <>
+                    <FaRegCopy size={16} />
+                    <span className="font-poppins text-xs font-semibold">
+                      Copy Number
+                    </span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+
+          <div className=" aspect-h-4 w-full h-auto m-auto rounded-xl relative text-white shadow-2xl transition-transform transform hover:scale-105">
+            <img
+              className="relative object-cover w-full h-full rounded-xl"
+              src="https://i.imgur.com/Zi6v09P.png"
+            />
+
+            <div className="w-full px-8 absolute top-3 sm:top-8">
+              <div className="flex justify-between">
+                <div className="">
+                  <p className="font-light">Bank</p>
+                  <p className="font-medium text-2xl tracking-widest">Jenius</p>
+                </div>
+              </div>
+              <div className="pt-1">
+                <p className="font-light">Ratama Adhi Nugraha</p>
+                <p className="font-medium tracking-more-wider">xxxxxxxxx</p>
+              </div>
+            </div>
+            <div className="absolute bottom-0.5 sm:bottom-3 left-1/2 -translate-x-1/2">
+              <button
+                type="button"
+                className="text-orange-500 bg-orange-200 rounded-md px-3 py-2 text-sm shadow-orange-300/20 shadow-lg flex items-center gap-2 scale-75 sm:scale-100"
+                onClick={() => {
+                  copyToClipboard(accountJenius);
+                  setIsCopied(true);
+                  setTimeout(() => {
+                    setIsCopied(false);
+                  }, 500);
+                }}
+              >
+                {isCopied && copiedText.text === accountJenius ? (
+                  <span className="font-poppins text-xs font-semibold opacity-55">
+                    Copy to clipboard
+                  </span>
+                ) : (
+                  <>
+                    <FaRegCopy size={16} />
+                    <span className="font-poppins text-xs font-semibold">
+                      Copy Number
+                    </span>
+                  </>
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+      </ModalGift>
 
       {previewPhoto && (
         <PreviewImage

@@ -53,7 +53,7 @@ function InvitationPopup({ setOpen = () => {}, open = true, name = '', data }) {
         <button
           type="button"
           onClick={() => setOpen(true)}
-          className="px-4 py-2 absolute w-[90%] lg:w-auto bottom-24 rounded-md shadow-md bg-white border border-palette-navi text-slate-950 flex items-center justify-center gap-2"
+          className="px-4 py-2 absolute w-[90%] lg:w-auto bottom-36 rounded-md shadow-md bg-white border border-palette-navi text-slate-950 flex items-center justify-center gap-2"
         >
           <BsEnvelopePaperHeart size={16} /> <span>Open Invitation</span>
         </button>
