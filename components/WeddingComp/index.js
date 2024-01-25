@@ -1,50 +1,39 @@
-import React, { useEffect, useRef, useState } from 'react';
-import useSWR from 'swr';
-import { fetchAPI } from '../../lib/api';
-import { useRouter } from 'next/router';
-import InvitationPopup from './InvitationPopup';
+import React, { useEffect, useRef, useState } from "react";
+import { useRouter } from "next/router";
+import InvitationPopup from "./InvitationPopup";
 import {
   AnimatePresence,
   motion,
   useAnimation,
   useScroll,
   useTransform,
-} from 'framer-motion';
-import LoadingPageWedding from './LoadingPageWedding';
-import Image from 'next/image';
-import { myLoader } from '../../lib/media';
-import { shimmer, toBase64 } from '../../util/toBase64';
-import MdFormat from '../../util/md';
-import remarkGfm from 'remark-gfm';
-import rehypeRaw from 'rehype-raw';
-import { useInView } from 'react-intersection-observer';
-import { FaInstagram, FaMapMarkerAlt, FaRegCopy } from 'react-icons/fa';
-import { MdOutlineMusicNote, MdOutlineMusicOff } from 'react-icons/md';
-import { HiOutlineCreditCard, HiOutlineGift } from 'react-icons/hi';
-import { Svg1, Svg2 } from './svgs';
-import moment from 'moment';
-import 'moment/locale/id.js';
-import Masonry from 'react-masonry-css';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperCore, { Autoplay, EffectCoverflow } from 'swiper';
-import 'swiper/swiper-bundle.css';
-import PreviewImage from '../PreviewImage';
-import ModalGift from './ModalGift';
-import { useCopyToClipboard } from '../../util/hooks';
-import Footer from '../footer';
+} from "framer-motion";
+import Image from "next/image";
+import { myLoader } from "../../lib/media";
+import { shimmer, toBase64 } from "../../util/toBase64";
+import MdFormat from "../../util/md";
+import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
+import { useInView } from "react-intersection-observer";
+import { FaInstagram, FaMapMarkerAlt, FaRegCopy } from "react-icons/fa";
+import { MdOutlineMusicNote, MdOutlineMusicOff } from "react-icons/md";
+import { HiOutlineCreditCard, HiOutlineGift } from "react-icons/hi";
+import { Svg1, Svg2 } from "./svgs";
+import moment from "moment";
+import "moment/locale/id.js";
+import Masonry from "react-masonry-css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import SwiperCore, { Autoplay, EffectCoverflow } from "swiper";
+import "swiper/swiper-bundle.css";
+import PreviewImage from "../PreviewImage";
+import ModalGift from "./ModalGift";
+import { useCopyToClipboard } from "../../util/hooks";
 
 SwiperCore.use([Autoplay]);
 
-moment.locale('id');
+moment.locale("id");
 
 function WeddingComp({ data }) {
-  console.log('WeddingComp data', data);
-
-  // const { data: dataWeddingAPI, isValidating: isValidateWeddingAPI } = useSWR(
-  //   '/wedding',
-  //   fetchAPI
-  // );
-
   const [openInvite, SetOpenInvite] = useState(false);
   const [openAddress, setOpenAddress] = useState(false);
   const [openBank, setOpenBank] = useState(false);
@@ -63,7 +52,7 @@ function WeddingComp({ data }) {
   const [copiedText, copyToClipboard] = useCopyToClipboard();
   const [isCopied, setIsCopied] = useState();
   const addressGift =
-    'Perumahan Pesona Alam Jatinangor Blok B2 no.18 Jatimukti Kec. Jatinangor, Kab. Sumedang Jawa Barat 45363';
+    "Perumahan Pesona Alam Jatinangor Blok B2 no.18 Jatimukti Kec. Jatinangor, Kab. Sumedang Jawa Barat 45363";
   const accountBCA = 2801545094;
   const accountJenius = 90014169011;
 
@@ -74,22 +63,22 @@ function WeddingComp({ data }) {
   const heroReff = useRef(null);
   const { scrollYProgress: scrlYHero } = useScroll({
     target: heroReff,
-    offset: ['start start', 'end end'],
+    offset: ["start start", "end end"],
   });
 
-  const scaleTextHero = useTransform(scrlYHero, [0, 0.4], ['100%', '250%']);
-  const scaleFrameFlower = useTransform(scrlYHero, [0, 0.4], ['100%', '400%']);
-  const opacityTextHero = useTransform(scrlYHero, [0, 0.4], ['100%', '0%']);
+  const scaleTextHero = useTransform(scrlYHero, [0, 0.4], ["100%", "250%"]);
+  const scaleFrameFlower = useTransform(scrlYHero, [0, 0.4], ["100%", "400%"]);
+  const opacityTextHero = useTransform(scrlYHero, [0, 0.4], ["100%", "0%"]);
   const opacityTextHeroMin = useTransform(
     scrlYHero,
     [0, 0.4],
-    ['-100%', '200%']
+    ["-100%", "200%"]
   );
-  const opacityTextHeroBlur = useTransform(scrlYHero, [0, 1], ['100%', '0%']);
-  const blurTextHero = useTransform(scrlYHero, [0.4, 1], ['0%', '100%']);
-  const lineTextHero = useTransform(scrlYHero, [0.4, 1], ['0px', '180px']);
-  const scaleImgSec1 = useTransform(scrlYHero, [0, 1], ['100%', '120%']);
-  const opacityImgSec1 = useTransform(scrlYHero, [0.8, 1], ['100%', '0%']);
+  const opacityTextHeroBlur = useTransform(scrlYHero, [0, 1], ["100%", "0%"]);
+  const blurTextHero = useTransform(scrlYHero, [0.4, 1], ["0%", "100%"]);
+  const lineTextHero = useTransform(scrlYHero, [0.4, 1], ["0px", "180px"]);
+  const scaleImgSec1 = useTransform(scrlYHero, [0, 1], ["100%", "120%"]);
+  const opacityImgSec1 = useTransform(scrlYHero, [0.8, 1], ["100%", "0%"]);
 
   const imageSection2Inview = useInView({ threshold: 0.3 });
   const imageSection2Control = useAnimation();
@@ -113,13 +102,13 @@ function WeddingComp({ data }) {
     transition1: {
       duration: 1,
       delay: 0.5,
-      type: 'spring',
+      type: "spring",
       bounce: 0.2,
     },
     transition2: {
       duration: 1.5,
       delay: 0.1,
-      type: 'spring',
+      type: "spring",
       bounce: 0.2,
     },
   };
@@ -177,19 +166,19 @@ function WeddingComp({ data }) {
     transition1: {
       duration: 1,
       delay: 0.5,
-      type: 'spring',
+      type: "spring",
       bounce: 0.2,
     },
     transition2: {
       duration: 0.7,
       delay: 0.8,
-      type: 'spring',
+      type: "spring",
       bounce: 0.2,
     },
     transition3: {
       duration: 0.3,
       delay: 1.2,
-      type: 'spring',
+      type: "spring",
       bounce: 0.2,
     },
   };
@@ -240,7 +229,7 @@ function WeddingComp({ data }) {
     transition: {
       delay: 0.5,
       duration: 1,
-      type: 'spring',
+      type: "spring",
       bounce: 0.2,
     },
   };
@@ -253,12 +242,12 @@ function WeddingComp({ data }) {
 
   useEffect(() => {
     document
-      .querySelector('html')
+      .querySelector("html")
       .classList.add(
-        ['scrollbar-thin'],
-        ['scrollbar-thumb-palette-slate/70'],
-        ['scrollbar-track-palette-slate/30'],
-        ['scrollbar-thumb-rounded-md']
+        ["scrollbar-thin"],
+        ["scrollbar-thumb-palette-slate/70"],
+        ["scrollbar-track-palette-slate/30"],
+        ["scrollbar-thumb-rounded-md"]
       );
   }, []);
 
@@ -309,18 +298,18 @@ function WeddingComp({ data }) {
       };
 
       // Set up event listeners for the "playing" and "pause" events
-      audio.addEventListener('playing', handleAudioPlay);
-      audio.addEventListener('pause', handleAudioPause);
+      audio.addEventListener("playing", handleAudioPlay);
+      audio.addEventListener("pause", handleAudioPause);
 
       // Set up event listener for the "ended" event
-      audio.addEventListener('ended', handleAudioEnd);
+      audio.addEventListener("ended", handleAudioEnd);
 
       // Clean up the audio and remove the event listener when the component unmounts
       return () => {
         audio.pause();
-        audio.removeEventListener('ended', handleAudioEnd);
-        audio.removeEventListener('playing', handleAudioPlay);
-        audio.removeEventListener('pause', handleAudioPause);
+        audio.removeEventListener("ended", handleAudioEnd);
+        audio.removeEventListener("playing", handleAudioPlay);
+        audio.removeEventListener("pause", handleAudioPause);
       };
     }
   }, [audio, openInvite]);
@@ -339,7 +328,7 @@ function WeddingComp({ data }) {
 
     // loop to countdown every 1 second
     // get updated duration
-    duration = moment.duration(duration - interval, 'milliseconds');
+    duration = moment.duration(duration - interval, "milliseconds");
 
     // if duration is >= 0
     if (duration.asSeconds() <= 0) {
@@ -357,12 +346,20 @@ function WeddingComp({ data }) {
     }
   }
 
+  function diffDateOneWeek() {
+    const eventTime = moment(data?.akadTime);
+    const currentTime = moment(new Date());
+    const duration = moment.duration(currentTime.diff(eventTime));
+
+    return duration;
+  }
+
   return (
     <div className="relative bg-palette-stone min-h-screen w-full">
       {audio && (
         <div
           className={`fixed bottom-8 left-6 z-40 rounded-full bg-emerald-50 border border-palette-slate text-palette-slate w-7 h-7 flex justify-center items-center ${
-            isPlaying > 0 ? 'animate-spin' : ''
+            isPlaying > 0 ? "animate-spin" : ""
           }`}
           onClick={() => (isPlaying ? audio.pause() : audio.play())}
         >
@@ -392,7 +389,7 @@ function WeddingComp({ data }) {
               style={{
                 scale: scaleImgSec1,
                 opacity: opacityImgSec1,
-                willChange: 'transform',
+                willChange: "transform",
               }}
             >
               <motion.div className="relative w-full h-full filter blur-[0.75px]">
@@ -417,19 +414,19 @@ function WeddingComp({ data }) {
             <motion.div
               className="w-full h-screen absolute inset-0 -top-6 z-10 text-white text-center flex flex-col justify-center items-center gap-1"
               style={{
-                willChange: 'transform',
+                willChange: "transform",
               }}
             >
               <div className="absolute z-[9] top-0 left-0 w-full h-full">
                 <div className="relative w-auto h-full flex items-center justify-center">
                   <motion.img
-                    src={'/img/wedding/flowerFrame1.svg'}
+                    src={"/img/wedding/flowerFrame1.svg"}
                     alt="flower frame 1"
                     // className='blur-sm'
                     style={{
-                      width: '100%',
+                      width: "100%",
                       opacity: opacityTextHeroBlur,
-                      willChange: 'transform',
+                      willChange: "transform",
                       scale: scaleFrameFlower,
                     }}
                   />
@@ -441,7 +438,7 @@ function WeddingComp({ data }) {
                   style={{
                     opacity: opacityTextHero,
                     scale: scaleTextHero,
-                    willChange: 'transform',
+                    willChange: "transform",
                   }}
                 >
                   Our Wedding
@@ -454,14 +451,14 @@ function WeddingComp({ data }) {
                     width: opacityTextHero,
                     translateX: opacityTextHeroMin,
                     opacity: opacityTextHero,
-                    willChange: 'transform',
+                    willChange: "transform",
                   }}
                 />
                 <motion.h2
                   className="font-playFair text-5xl sm:text-6xl md:text-7xl drop-shadow-sm"
                   style={{
                     opacity: opacityTextHero,
-                    willChange: 'transform',
+                    willChange: "transform",
                     scale: scaleTextHero,
                   }}
                 >
@@ -473,7 +470,7 @@ function WeddingComp({ data }) {
                     width: opacityTextHero,
                     translateX: opacityTextHero,
                     opacity: opacityTextHero,
-                    willChange: 'transform',
+                    willChange: "transform",
                   }}
                 />
               </div>
@@ -482,7 +479,7 @@ function WeddingComp({ data }) {
               className="absolute w-full text-zinc-300 top-1/3 "
               style={{
                 opacity: blurTextHero,
-                willChange: 'transform',
+                willChange: "transform",
               }}
             >
               {data?.Quotes[0]?.quoteText && (
@@ -505,7 +502,7 @@ function WeddingComp({ data }) {
                   style={{
                     width: 1,
                     height: lineTextHero,
-                    willChange: 'transform',
+                    willChange: "transform",
                   }}
                   className="bg-slate-50"
                 />
@@ -515,7 +512,7 @@ function WeddingComp({ data }) {
               className="fixed md:hidden bottom-6 left-0 aspect-1 z-30 flex justify-center w-full h-[75px]"
               style={{
                 opacity: opacityTextHero,
-                willChange: 'transform',
+                willChange: "transform",
               }}
             >
               <Image
@@ -531,7 +528,7 @@ function WeddingComp({ data }) {
               className="fixed hidden bottom-6 left-0 aspect-1 z-30 md:flex justify-center w-full h-[75px]"
               style={{
                 opacity: opacityTextHero,
-                willChange: 'transform',
+                willChange: "transform",
               }}
             >
               <Image
@@ -649,7 +646,7 @@ function WeddingComp({ data }) {
                   {data?.nameCPPria}
                 </div>
                 <div className="text-center text-sm font-poppins text-palette-slate w-3/4 mx-auto">
-                  {data.sonOf.split('\n').map((chr, idxCPP) => (
+                  {data.sonOf.split("\n").map((chr, idxCPP) => (
                     <p key={`idxCPP_${idxCPP}`} className="m-0">
                       {chr}
                     </p>
@@ -727,7 +724,7 @@ function WeddingComp({ data }) {
                   {data?.nameCPWanita}
                 </div>
                 <div className="text-center text-sm font-poppins text-palette-slate w-3/4 mx-auto">
-                  {data.daughterOf.split('\n').map((chr, idxCPW) => (
+                  {data.daughterOf.split("\n").map((chr, idxCPW) => (
                     <p key={`idxCPW_${idxCPW}`} className="m-0">
                       {chr}
                     </p>
@@ -820,8 +817,8 @@ function WeddingComp({ data }) {
                 transition={{ ...akadInfoVariants.transition, delay: 1.5 }}
                 className="self-center font-playFair text-center tracking-wide will-change-transform"
               >
-                <div>{moment(data?.akadTime).format('dddd, DD MMMM YYYY')}</div>
-                <div>{moment(data?.akadTime).format('hh:mm')} WIB</div>
+                <div>{moment(data?.akadTime).format("dddd, DD MMMM YYYY")}</div>
+                <div>{moment(data?.akadTime).format("hh:mm")} - 13.00 WIB</div>
               </motion.div>
               <motion.div
                 initial={akadInfoVariants.hiddenBottom}
@@ -840,7 +837,7 @@ function WeddingComp({ data }) {
                     target="_blank"
                     className="no-underline text-palette-slate bg-emerald-50 border border-palette-slate rounded-md px-3 py-2 text-sm shadow-palette-slate/20 shadow-lg flex items-center gap-2"
                   >
-                    <FaMapMarkerAlt size={16} />{' '}
+                    <FaMapMarkerAlt size={16} />{" "}
                     <span className="font-poppins text-xs font-semibold">
                       Lihat Lokasi
                     </span>
@@ -928,7 +925,7 @@ function WeddingComp({ data }) {
             loop={true}
             autoplay={{ delay: 3000, disableOnInteraction: false }}
             centeredSlides={true}
-            slidesPerView={'auto'}
+            slidesPerView={"auto"}
             spaceBetween={12}
           >
             {data?.prewedPhoto.map((photo) => {
@@ -996,60 +993,64 @@ function WeddingComp({ data }) {
       </section>
 
       <section className="w-full bg-gradient-to-b from-palette-navi to-palette-black text-zinc-300 pt-12 pb-16 overflow-hidden space-y-8">
-        <div className="self-center relative w-full max-w-screen-sm mx-auto flex justify-center will-change-transform">
-          <span className="relative text-7xl font-playFair font-bold opacity-15 tracking-widest">
-            Gift
-          </span>
-          <span className="absolute left-[37%] sm:left-[45%] -translate-x-1/2 text-4xl top-3 font-playFair">
-            Amplop
-          </span>
-          <span className="absolute left-[62%] sm:left-[61%] -translate-x-1/2 top-8 text-4xl font-sacramento">
-            Digital
-          </span>
-        </div>
-        <div className="relative w-full max-w-screen-sm mx-auto mb-6 space-y-8">
-          <div className="w-4/5 mx-auto text-center">
-            <p className="text-xs font-poppins tracking-wide leading-relaxed">
-              Bagi keluarga dan sahabat yang ingin mengirimkan hadiah, silakan
-              mengirimkannya melalui tautan berikut:
-            </p>
-          </div>
-          <div className="w-11/12 sm:w-5/6 mx-auto flex justify-evenly">
-            <button
-              type="button"
-              className="text-palette-slate bg-emerald-50 border border-palette-slate rounded-md px-3 py-2 text-sm shadow-palette-slate/20 shadow-lg flex items-center gap-2"
-              onClick={() => {
-                setOpenAddress(true);
-                setOpenBank(false);
-              }}
-            >
-              <HiOutlineGift size={16} />
-              <span className="font-poppins text-xs font-semibold">
-                Kirim Hadiah
+        {diffDateOneWeek().asDays() <= 14 && (
+          <>
+            <div className="self-center relative w-full max-w-screen-sm mx-auto flex justify-center will-change-transform">
+              <span className="relative text-7xl font-playFair font-bold opacity-15 tracking-widest">
+                Gift
               </span>
-            </button>
-            <button
-              type="button"
-              className="text-palette-slate bg-emerald-50 border border-palette-slate rounded-md px-3 py-2 text-sm shadow-palette-slate/20 shadow-lg flex items-center gap-2"
-              onClick={() => {
-                setOpenAddress(false);
-                setOpenBank(true);
-              }}
-            >
-              <HiOutlineCreditCard size={16} />
-              <span className="font-poppins text-xs font-semibold">
-                Transfer Bank
+              <span className="absolute left-[37%] sm:left-[45%] -translate-x-1/2 text-4xl top-3 font-playFair">
+                Amplop
               </span>
-            </button>
-          </div>
-        </div>
+              <span className="absolute left-[62%] sm:left-[61%] -translate-x-1/2 top-8 text-4xl font-sacramento">
+                Digital
+              </span>
+            </div>
+            <div className="relative w-full max-w-screen-sm mx-auto mb-6 space-y-8">
+              <div className="w-4/5 mx-auto text-center">
+                <p className="text-xs font-poppins tracking-wide leading-relaxed">
+                  Bagi keluarga dan sahabat yang ingin mengirimkan hadiah,
+                  silakan mengirimkannya melalui tautan berikut:
+                </p>
+              </div>
+              <div className="w-11/12 sm:w-5/6 mx-auto flex justify-evenly">
+                <button
+                  type="button"
+                  className="text-palette-slate bg-emerald-50 border border-palette-slate rounded-md px-3 py-2 text-sm shadow-palette-slate/20 shadow-lg flex items-center gap-2"
+                  onClick={() => {
+                    setOpenAddress(true);
+                    setOpenBank(false);
+                  }}
+                >
+                  <HiOutlineGift size={16} />
+                  <span className="font-poppins text-xs font-semibold">
+                    Kirim Hadiah
+                  </span>
+                </button>
+                <button
+                  type="button"
+                  className="text-palette-slate bg-emerald-50 border border-palette-slate rounded-md px-3 py-2 text-sm shadow-palette-slate/20 shadow-lg flex items-center gap-2"
+                  onClick={() => {
+                    setOpenAddress(false);
+                    setOpenBank(true);
+                  }}
+                >
+                  <HiOutlineCreditCard size={16} />
+                  <span className="font-poppins text-xs font-semibold">
+                    Transfer Bank
+                  </span>
+                </button>
+              </div>
+            </div>
+          </>
+        )}
       </section>
       <section className="w-full pb-40 pt-16 bg-palette-black text-white font-poppins">
-        <div className="text-xs text-center" onClick={() => route.push('/')}>
+        <div className="text-xs text-center" onClick={() => route.push("/")}>
           <span className="font-semibold">Adhi & Cia</span> &copy; 2024
         </div>
         <div className="text-xs text-center">
-          <span className="font-semibold">Song: All The Gold - Alivan Blue</span>
+          <span className="font-semibold">Song: All The Gold - Alivan Blu</span>
         </div>
       </section>
 
