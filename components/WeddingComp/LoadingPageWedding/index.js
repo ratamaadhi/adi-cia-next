@@ -5,7 +5,7 @@ import { shimmer, toBase64 } from '../../../util/toBase64';
 
 function LoadingPageWedding({ data }) {
   return (
-    <div className="fixed z-20 h-screen w-full flex justify-center items-center text-white">
+    <div className="fixed z-20 h-screen w-full left-0 flex justify-center items-center text-white">
       <Image
         src={data.imageSection1.url}
         loader={myLoader}
@@ -20,8 +20,8 @@ function LoadingPageWedding({ data }) {
         )}`}
         className={`absolute top-0 left-0 hover:scale-110 cursor-pointer object-cover`}
       />
-      <div className="absolute inset-0 h-full w-full bg-violet-900/30" />
-      <div className="h-1/4 w-full absolute bottom-0 bg-gradient-to-t from-slate-950 via-violet-900/30" />
+      <div className="absolute inset-0 h-full w-full bg-slate-900/30" />
+      <div className="h-1/4 w-full absolute bottom-0 bg-gradient-to-t from-slate-950 via-slate-900/30" />
       <div className="animate-bounce">Loading...</div>
     </div>
   );
