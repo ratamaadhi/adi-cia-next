@@ -48,7 +48,7 @@ function InvitationPopup({ setOpen = () => {}, open = true, name = '', data }) {
         )}
         <div className="mb-12">You Are Invited!</div>
         <div className="">The Wedding Celebration of</div>
-        <div className="text-4xl font-satisfy">Adhi & Cia</div>
+        <div className="text-4xl font-satisfy">{data?.nickNameCPWanita} & {data?.nickNameCPPria}</div>
         <div>#ItWillAlwaysYou</div>
         <button
           type="button"
