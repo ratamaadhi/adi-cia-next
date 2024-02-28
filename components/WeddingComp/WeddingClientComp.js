@@ -338,7 +338,10 @@ function WeddingComp({ data }) {
       SetShowCountDown(true);
       // otherwise, show the updated countdown
       SetCountDownDay({
-        days: duration.days(),
+        days:
+          duration.months() > 0
+            ? duration.asDays().toFixed(0) - 1
+            : duration.days(),
         hours: duration.hours(),
         minutes: duration.minutes(),
         seconds: duration.seconds(),
@@ -869,7 +872,9 @@ function WeddingComp({ data }) {
                 <div>
                   {moment(data?.resepsiTime).format('dddd, DD MMMM YYYY')}
                 </div>
-                <div>{moment(data?.resepsiTime).format('hh:mm')} - 14:00 WIB</div>
+                <div>
+                  {moment(data?.resepsiTime).format('hh:mm')} - 14:00 WIB
+                </div>
               </motion.div>
               <motion.div
                 initial={akadInfoVariants.hiddenBottom}
