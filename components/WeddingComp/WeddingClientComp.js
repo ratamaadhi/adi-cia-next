@@ -793,7 +793,7 @@ function WeddingComp({ data }) {
                 className="self-center font-playFair text-center tracking-wide will-change-transform"
               >
                 <div>{moment(data?.akadTime).format('dddd, DD MMMM YYYY')}</div>
-                <div>{moment(data?.akadTime).format('hh:mm')} - 13.00 WIB</div>
+                <div>{moment(data?.akadTime).format('hh:mm')} WIB</div>
               </motion.div>
               <motion.div
                 initial={akadInfoVariants.hiddenBottom}
@@ -869,7 +869,7 @@ function WeddingComp({ data }) {
                 <div>
                   {moment(data?.resepsiTime).format('dddd, DD MMMM YYYY')}
                 </div>
-                <div>{moment(data?.resepsiTime).format('hh:mm')} WIB</div>
+                <div>{moment(data?.resepsiTime).format('hh:mm')} - 14:00 WIB</div>
               </motion.div>
               <motion.div
                 initial={akadInfoVariants.hiddenBottom}
