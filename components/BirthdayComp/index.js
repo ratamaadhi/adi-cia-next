@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import { FiArrowDown, FiArrowRight, FiCalendar, FiCheck, FiMapPin, FiShare2 } from 'react-icons/fi';
+import MusicPlayer from './MusicPlayer';
 import styles from '../../styles/Birthday.module.css';
 
 const asset = '/birthday/sena';
@@ -128,10 +129,19 @@ export default function BirthdayInvitation({ event }) {
   const [opened, setOpened] = useState(false);
   const [opening, setOpening] = useState(false);
   const [daysLeft, setDaysLeft] = useState(null);
+  const [musicPlaying, setMusicPlaying] = useState(false);
+  const [musicError, setMusicError] = useState('');
+  const music = useRef(null);
   const timer = useRef(null);
   const heroHeading = useRef(null);
   const guest = typeof router.query.invite === 'string' ? router.query.invite.slice(0, 120) : '';
   const shareUrl = `${event.siteUrl}/birthday/${event.slug}`;
+
+  useEffect(() => {
+    const player = music.current;
+    player.volume = 0.4;
+    return () => player.pause();
+  }, []);
 
   useEffect(() => {
     function updateCountdown() { setDaysLeft(Math.max(0, Math.ceil((new Date(event.startsAt).getTime() - Date.now()) / 86400000))); }
@@ -149,12 +159,43 @@ export default function BirthdayInvitation({ event }) {
   function openInvitation() {
     if (opening) return;
     setOpening(true);
+    playMusic();
     const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     timer.current = setTimeout(() => setOpened(true), reduceMotion ? 0 : 1100);
   }
 
+  async function playMusic() {
+    setMusicError('');
+    try {
+      if (music.current.error) music.current.load();
+      await music.current.play();
+    } catch (error) {
+      if (error.name !== 'AbortError') {
+        setMusicPlaying(false);
+        setMusicError('Musik belum bisa diputar. Ketuk Putar untuk mencoba lagi.');
+      }
+    }
+  }
+
+  function toggleMusic() {
+    if (music.current.paused) playMusic();
+    else music.current.pause();
+  }
+
   return (
-    <div className={styles.page}>
+    <div className={`${styles.page} ${opened ? styles.openedPage : ''}`}>
+      <audio
+        ref={music}
+        src={`${asset}/watching-you-grow.mp3`}
+        preload="none"
+        loop
+        onPlay={() => setMusicPlaying(true)}
+        onPause={() => setMusicPlaying(false)}
+        onError={() => {
+          setMusicPlaying(false);
+          setMusicError('Musik belum bisa diputar. Ketuk Putar untuk mencoba lagi.');
+        }}
+      />
       {!opened ? <main className={`${styles.cover} ${opening ? styles.opening : ''}`}>
         <span className={styles.coverDate}>29 NOVEMBER 2026</span>
         <div className={styles.coverHeading}><p>Ada pesta kecil untukmu!</p><h1>Sena turns <span>ONE!</span></h1></div>
@@ -172,6 +213,7 @@ export default function BirthdayInvitation({ event }) {
         <button className={styles.darkButton} onClick={openInvitation} disabled={opening}>{opening ? 'Sebentar, Sena siap-siap…' : 'Buka undangan'}<FiArrowRight /></button>
         <p className={styles.coverSignoff}>Dengan sayang, Adhi & Cia</p>
       </main> : <>
+        <div className={styles.invitationScroll}>
         <a href="#rsvp" className={styles.skipLink}>Langsung ke konfirmasi kehadiran</a>
         <header className={styles.header}>
           <a href="#home" className={styles.wordmark} aria-label="Undangan Sena, kembali ke atas">sena<span>.</span></a>
@@ -209,7 +251,10 @@ export default function BirthdayInvitation({ event }) {
           </section>
 
           <section className={styles.memories} aria-labelledby="memories-heading">
-            <div className={styles.sectionIntro}><h2 id="memories-heading">Kecil-kecil,<br /><span>banyak cerita.</span></h2><p>Dari pelukan pertama sampai sibuk dengan mainan. Ini sedikit cerita dari tahun pertamaku.</p></div>
+            <div className={styles.sectionIntro}>
+              <h2 id="memories-heading">Kecil-kecil,<br /><span>banyak cerita.</span></h2>
+              <p>Sejak <strong><time dateTime="2025-11-25">25 November 2025</time></strong>, Sena mengisi hari-hari kami dengan tawa dan petualangan kecil.</p>
+            </div>
             <div className={styles.scrapbook}>{gallery.map(photo => <figure className={`${styles.memoryPhoto} ${styles[photo.className]}`} key={photo.file}><div className={styles.memoryImage}><Image src={`${asset}/${photo.file}.webp`} alt={photo.alt} layout="fill" objectFit="cover" unoptimized loading="lazy" /></div><figcaption>{photo.caption}</figcaption></figure>)}<span className={styles.scrapbookStar} aria-hidden="true" /></div>
           </section>
 
@@ -219,7 +264,11 @@ export default function BirthdayInvitation({ event }) {
           <section className={styles.goodbye}><span className={styles.goodbyeStar} aria-hidden="true" /><h2>Sampai ketemu<br />di pestaku!</h2><p>Dengan penuh sayang,</p><strong>Adhi & Cia</strong><a href={`https://wa.me/?text=${encodeURIComponent(`Yuk, rayakan ulang tahun pertama Sena!\nMinggu, 29 November 2026 · 15.00 WIB\nLihat undangan dan konfirmasi kehadiran di sini:\n${shareUrl}`)}`} target="_blank" rel="noopener noreferrer" className={styles.shareLink}><FiShare2 /> Bagikan lewat WhatsApp</a><a href="#home" className={styles.backTop}>Kembali ke atas ↑</a></section>
         </main>
         <footer className={styles.footer}>Dibuat dengan sayang untuk Sena · 2026</footer>
+        </div>
+        <div className={styles.playbackDock}>
+        <MusicPlayer audioRef={music} playing={musicPlaying} onToggle={toggleMusic} error={musicError} />
         <nav className={styles.mobileNav} aria-label="Navigasi undangan"><a href="#detail"><FiCalendar />Acara</a><a href={event.mapsUrl} target="_blank" rel="noopener noreferrer"><FiMapPin />Lokasi</a><a href="#rsvp">Aku ikut! <FiArrowRight /></a></nav>
+        </div>
       </>}
     </div>
   );
