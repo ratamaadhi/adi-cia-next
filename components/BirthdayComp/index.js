@@ -183,7 +183,7 @@ export default function BirthdayInvitation({ event }) {
   }
 
   return (
-    <div className={`${styles.page} ${opened ? styles.openedPage : ''}`}>
+    <div className={styles.page}>
       <audio
         ref={music}
         src={`${asset}/watching-you-grow.mp3`}
@@ -213,7 +213,6 @@ export default function BirthdayInvitation({ event }) {
         <button className={styles.darkButton} onClick={openInvitation} disabled={opening}>{opening ? 'Sebentar, Sena siap-siap…' : 'Buka undangan'}<FiArrowRight /></button>
         <p className={styles.coverSignoff}>Dengan sayang, Adhi & Cia</p>
       </main> : <>
-        <div className={styles.invitationScroll}>
         <a href="#rsvp" className={styles.skipLink}>Langsung ke konfirmasi kehadiran</a>
         <header className={styles.header}>
           <a href="#home" className={styles.wordmark} aria-label="Undangan Sena, kembali ke atas">sena<span>.</span></a>
@@ -264,11 +263,8 @@ export default function BirthdayInvitation({ event }) {
           <section className={styles.goodbye}><span className={styles.goodbyeStar} aria-hidden="true" /><h2>Sampai ketemu<br />di pestaku!</h2><p>Dengan penuh sayang,</p><strong>Adhi & Cia</strong><a href={`https://wa.me/?text=${encodeURIComponent(`Yuk, rayakan ulang tahun pertama Sena!\nMinggu, 29 November 2026 · 15.00 WIB\nLihat undangan dan konfirmasi kehadiran di sini:\n${shareUrl}`)}`} target="_blank" rel="noopener noreferrer" className={styles.shareLink}><FiShare2 /> Bagikan lewat WhatsApp</a><a href="#home" className={styles.backTop}>Kembali ke atas ↑</a></section>
         </main>
         <footer className={styles.footer}>Dibuat dengan sayang untuk Sena · 2026</footer>
-        </div>
-        <div className={styles.playbackDock}>
         <MusicPlayer audioRef={music} playing={musicPlaying} onToggle={toggleMusic} error={musicError} />
         <nav className={styles.mobileNav} aria-label="Navigasi undangan"><a href="#detail"><FiCalendar />Acara</a><a href={event.mapsUrl} target="_blank" rel="noopener noreferrer"><FiMapPin />Lokasi</a><a href="#rsvp">Aku ikut! <FiArrowRight /></a></nav>
-        </div>
       </>}
     </div>
   );
