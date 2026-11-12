@@ -131,7 +131,7 @@ export default function BirthdayInvitation({ event }) {
   const timer = useRef(null);
   const heroHeading = useRef(null);
   const guest = typeof router.query.invite === 'string' ? router.query.invite.slice(0, 120) : '';
-  const shareUrl = typeof window === 'undefined' ? '' : `${window.location.origin}/birthday/sena`;
+  const shareUrl = `${event.siteUrl}/birthday/${event.slug}`;
 
   useEffect(() => {
     function updateCountdown() { setDaysLeft(Math.max(0, Math.ceil((new Date(event.startsAt).getTime() - Date.now()) / 86400000))); }

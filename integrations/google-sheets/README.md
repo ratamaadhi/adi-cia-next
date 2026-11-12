@@ -46,4 +46,4 @@ Saat Apps Script diubah, pilih **Deploy → Manage deployments → Edit → New 
 
 Dalam development tanpa URL Apps Script, jawaban disimpan di `.data/birthday-rsvp/` dan antarmuka menandainya sebagai preview lokal. Pada production, formulir mengembalikan pesan gagal jika integrasi belum dikonfigurasi. Pesan berhasil hanya muncul setelah server penyimpanan mengonfirmasi data diterima.
 
-Nama tamu pada amplop dapat diisi melalui `/birthday/sena?invite=Nama%20Keluarga`. Tautan berbagi WhatsApp memakai alamat deployment aktif.
+Nama tamu pada amplop dapat diisi melalui `https://adhicia.web.id/birthday/sena?invite=Nama%20Keluarga`. Tautan berbagi WhatsApp memakai domain `adhicia.web.id`.

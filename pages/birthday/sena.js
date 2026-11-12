@@ -26,9 +26,7 @@ export default function SenaBirthdayPage({ siteUrl }) {
 
 SenaBirthdayPage.standaloneInvitation = true;
 
-export async function getServerSideProps({ req }) {
-  const host = process.env.VERCEL_PROJECT_PRODUCTION_URL || req.headers.host;
-  const protocol = process.env.NODE_ENV === 'development' ? 'http' : 'https';
-  const siteUrl = (process.env.SITE_URL || `${protocol}://${host}`).replace(/\/$/, '');
+export async function getServerSideProps() {
+  const siteUrl = (process.env.SITE_URL || senaBirthday.siteUrl).replace(/\/$/, '');
   return { props: { siteUrl } };
 }
