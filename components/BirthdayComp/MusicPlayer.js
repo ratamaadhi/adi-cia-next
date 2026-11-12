@@ -45,10 +45,12 @@ export default function MusicPlayer({ audioRef, playing, onToggle, error }) {
   }, [audioRef]);
 
   const cue = senaLyrics[position.line];
+  const collapsed = !playing && !error;
 
   return (
-    <section className={styles.musicPlayer} aria-label="Musik dan lirik Watching You Grow">
-      <div className={styles.lyricArea}>
+    <section className={styles.musicPlayer} data-collapsed={collapsed} aria-label="Musik dan lirik Watching You Grow">
+      <div className={styles.lyricArea} aria-hidden={collapsed}>
+        <div className={styles.lyricViewport}>
         {error ? <p className={styles.musicError} role="status">{error}</p> : cue ? (
           <div
             key={position.line}
@@ -67,6 +69,7 @@ export default function MusicPlayer({ audioRef, playing, onToggle, error }) {
         ) : (
           <p className={styles.songTitle}>Watching You Grow <span>Mr2Crafty</span></p>
         )}
+        </div>
       </div>
       <div className={styles.musicControls}>
         <button type="button" onClick={onToggle} aria-label={playing ? 'Jeda musik' : 'Putar musik'} title={playing ? 'Jeda musik' : 'Putar musik'}>
