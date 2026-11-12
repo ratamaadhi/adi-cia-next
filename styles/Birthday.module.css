@@ -201,13 +201,13 @@
   .heroActions .darkButton { min-height: 46px; font-size: 12px; }
   .heroDate { font-size: 10px; margin-top: 17px !important; }
   .guestGreeting { margin-bottom: 12px !important; font-size: 12px; }
-  .heroScene { width: 100%; max-width: 390px; height: 445px; margin: auto; }
-  .photoCard { width: 74%; left: 17%; top: 20px; padding: 10px 10px 15px; }
+  .heroScene { width: 100%; max-width: 390px; height: auto; margin: auto; padding: 20px 0 160px; }
+  .photoCard { position: relative; width: 74%; left: auto; top: auto; margin-left: 17%; padding: 10px 10px 15px; }
   .photoCard p { font-size: 11px; margin-top: 10px !important; }
   .heroTape { width: 85px; height: 27px; top: 11px; left: 40%; }
   .numberSticker { right: 0; width: 104px; height: 104px; font-size: 68px; }
   .numberSticker span { font-size: 6px; }
-  .heroToy { width: 185px; bottom: 0; left: -10px; }
+  .heroToy { width: 140px; bottom: 0; left: -10px; }
   .heroStar { right: 15px; bottom: 15px; width: 36px; height: 36px; }
   .detailsInner { grid-template-columns: 1fr; padding: 55px 27px 60px; gap: 35px; }
   .detailsIntro { text-align: center; }
@@ -252,9 +252,7 @@
 
 @media (max-width: 360px) {
   .hero { padding-left: 18px; padding-right: 18px; }
-  .heroScene { height: 390px; }
   .hero h1 { font-size: 70px; }
-  .heroToy { width: 165px; }
   .eventBoard { grid-template-columns: 85px 1fr; gap: 12px; }
   .boardInfo svg { display: none; }
   .radioOptions { flex-direction: column; }
