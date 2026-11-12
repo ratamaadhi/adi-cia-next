@@ -1,0 +1,15 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Adhi Cia//Sena Birthday//ID
+CALSCALE:GREGORIAN
+BEGIN:VEVENT
+UID:sena-first-birthday-2026@adhi-cia
+DTSTAMP:20261112T000000Z
+DTSTART:20261129T080000Z
+SUMMARY:Ulang Tahun Pertama Sena
+LOCATION:Cyra home
+DESCRIPTION:Rayakan ulang tahun pertama Naushad Sena Al Farabi bersama Ad
+ hi & Cia.\nLokasi: https://maps.app.goo.gl/EuZwC8qcQLGuPutJ6
+URL:https://maps.app.goo.gl/EuZwC8qcQLGuPutJ6
+END:VEVENT
+END:VCALENDAR

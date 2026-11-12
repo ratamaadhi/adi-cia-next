@@ -17,8 +17,8 @@ function MyApp({ Component, pageProps }) {
   return (
       <>
         <Head>
-          <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"></meta>
-          <link rel="icon" href={getStrapiMedia(global.favicon)} />
+          <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
+          {global?.favicon && <link rel="icon" href={getStrapiMedia(global.favicon)} />}
           <link rel="preconnect" href="https://fonts.googleapis.com"/>
           <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet"/>
           <link href="https://fonts.googleapis.com/css2?family=Satisfy&display=swap" rel="stylesheet" />
@@ -35,6 +35,9 @@ function MyApp({ Component, pageProps }) {
 MyApp.getInitialProps = async (ctx) => {
   // Calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(ctx);
+  if (ctx.Component.standaloneInvitation) {
+    return { ...appProps, pageProps: { ...appProps.pageProps, global: null } };
+  }
   // Fetch global site settings from Strapi
   const global = await fetchAPI("/global");
   // Pass the data to our page via props

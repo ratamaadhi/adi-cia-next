@@ -33,5 +33,8 @@ yarn-error.log*
 # vercel
 .vercel
 
+# Local RSVP records contain guest information.
+/.data/
+
 # config
 next.config.js

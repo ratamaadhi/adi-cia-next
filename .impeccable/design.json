@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-11-12T07:16:02.292066+00:00",
+  "title": "Sena Birthday Invitation",
+  "extensions": {
+    "colorMeta": {
+      "yellow": {
+        "role": "primary",
+        "displayName": "Yellow",
+        "tonalRamp": [
+          "oklch(15% 0.025 95)",
+          "oklch(25% 0.05 95)",
+          "oklch(35% 0.08 95)",
+          "oklch(45% 0.11 95)",
+          "oklch(58% 0.13 95)",
+          "oklch(72% 0.11 95)",
+          "oklch(85% 0.07 95)",
+          "oklch(95% 0.025 95)"
+        ]
+      },
+      "orange": {
+        "role": "secondary",
+        "displayName": "Orange",
+        "tonalRamp": [
+          "oklch(15% 0.025 48)",
+          "oklch(25% 0.05 48)",
+          "oklch(35% 0.08 48)",
+          "oklch(45% 0.11 48)",
+          "oklch(58% 0.13 48)",
+          "oklch(72% 0.11 48)",
+          "oklch(85% 0.07 48)",
+          "oklch(95% 0.025 48)"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(25% 0 0)",
+          "oklch(35% 0 0)",
+          "oklch(45% 0 0)",
+          "oklch(58% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(85% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "red": {
+        "role": "secondary",
+        "displayName": "Red",
+        "tonalRamp": [
+          "oklch(15% 0.025 28)",
+          "oklch(25% 0.05 28)",
+          "oklch(35% 0.08 28)",
+          "oklch(45% 0.11 28)",
+          "oklch(58% 0.13 28)",
+          "oklch(72% 0.11 28)",
+          "oklch(85% 0.07 28)",
+          "oklch(95% 0.025 28)"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(25% 0 0)",
+          "oklch(35% 0 0)",
+          "oklch(45% 0 0)",
+          "oklch(58% 0 0)",
+          "oklch(72% 0 0)",
+          "oklch(85% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "rsvp-paper": {
+        "role": "neutral",
+        "displayName": "Rsvp Paper",
+        "tonalRamp": [
+          "oklch(15% 0.025 65)",
+          "oklch(25% 0.05 65)",
+          "oklch(35% 0.08 65)",
+          "oklch(45% 0.11 65)",
+          "oklch(58% 0.13 65)",
+          "oklch(72% 0.11 65)",
+          "oklch(85% 0.07 65)",
+          "oklch(95% 0.025 65)"
+        ]
+      },
+      "button-hover": {
+        "role": "secondary",
+        "displayName": "Button Hover",
+        "tonalRamp": [
+          "oklch(15% 0.025 95)",
+          "oklch(25% 0.05 95)",
+          "oklch(35% 0.08 95)",
+          "oklch(45% 0.11 95)",
+          "oklch(58% 0.13 95)",
+          "oklch(72% 0.11 95)",
+          "oklch(85% 0.07 95)",
+          "oklch(95% 0.025 95)"
+        ]
+      },
+      "input-border": {
+        "role": "neutral",
+        "displayName": "Input Border",
+        "tonalRamp": [
+          "oklch(15% 0.025 85)",
+          "oklch(25% 0.05 85)",
+          "oklch(35% 0.08 85)",
+          "oklch(45% 0.11 85)",
+          "oklch(58% 0.13 85)",
+          "oklch(72% 0.11 85)",
+          "oklch(85% 0.07 85)",
+          "oklch(95% 0.025 85)"
+        ]
+      },
+      "selected-paper": {
+        "role": "secondary",
+        "displayName": "Selected Paper",
+        "tonalRamp": [
+          "oklch(15% 0.025 95)",
+          "oklch(25% 0.05 95)",
+          "oklch(35% 0.08 95)",
+          "oklch(45% 0.11 95)",
+          "oklch(58% 0.13 95)",
+          "oklch(72% 0.11 95)",
+          "oklch(85% 0.07 95)",
+          "oklch(95% 0.025 95)"
+        ]
+      },
+      "selected-border": {
+        "role": "secondary",
+        "displayName": "Selected Border",
+        "tonalRamp": [
+          "oklch(15% 0.025 95)",
+          "oklch(25% 0.05 95)",
+          "oklch(35% 0.08 95)",
+          "oklch(45% 0.11 95)",
+          "oklch(58% 0.13 95)",
+          "oklch(72% 0.11 95)",
+          "oklch(85% 0.07 95)",
+          "oklch(95% 0.025 95)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Barlow Condensed",
+        "purpose": "Hero headline through the Sena Display CSS alias."
+      },
+      "body": {
+        "displayName": "Nunito",
+        "purpose": "Body text through the Sena Text CSS alias."
+      }
+    },
+    "shadows": [
+      {
+        "name": "hero-photo",
+        "value": "0 12px 42px #24201520",
+        "purpose": "Main paper photograph."
+      },
+      {
+        "name": "event-board",
+        "value": "0 14px 32px #56350014",
+        "purpose": "Event paper board."
+      },
+      {
+        "name": "memory-photo",
+        "value": "0 8px 30px #24201518",
+        "purpose": "Scrapbook photographs."
+      },
+      {
+        "name": "mobile-nav",
+        "value": "0 5px 35px #22222226",
+        "purpose": "Fixed mobile navigation."
+      }
+    ],
+    "motion": [
+      {
+        "name": "controls",
+        "value": "background-color .2s, color .2s, transform .2s",
+        "purpose": "Interactive control transitions."
+      },
+      {
+        "name": "envelope-letter",
+        "value": "transform .9s cubic-bezier(.16,1,.3,1)",
+        "purpose": "Envelope opening. Reduced-motion preference removes animation."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "tablet",
+        "value": "900px"
+      },
+      {
+        "name": "mobile",
+        "value": "600px"
+      },
+      {
+        "name": "small-mobile",
+        "value": "360px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Invitation opening, event directions, and RSVP submission.",
+      "html": "<button class=\"ds-button\">Kirim konfirmasi</button>",
+      "css": ".ds-button { display:inline-flex; align-items:center; justify-content:center; min-height:52px; padding:13px 24px; border:0; border-radius:10px; background:#222222; color:#fff; font:700 14px \"Sena Text\", Nunito, sans-serif; cursor:pointer; transition:background-color .2s, transform .2s; } .ds-button:hover { background:#45412f; transform:translateY(-2px); } .ds-button:focus-visible { outline: 3px solid #222222; outline-offset: 5px; } .ds-button:disabled { opacity:.7; cursor:wait; }"
+    },
+    {
+      "name": "Name field",
+      "kind": "input",
+      "refersTo": "input",
+      "description": "RSVP guest name field.",
+      "html": "<label class=\"ds-label\" for=\"ds-name\">Nama kamu / keluarga *</label><input class=\"ds-input\" id=\"ds-name\" placeholder=\"Tulis nama kamu di sini\">",
+      "css": ".ds-label { display:block; margin-bottom:8px; color:#222222; font:700 12px \"Sena Text\", Nunito, sans-serif; } .ds-input { display:block; width:100%; min-height:46px; padding:12px; border:1px solid #aaa79e; border-radius:7px; background:#fff; color:#222222; font:13px \"Sena Text\", Nunito, sans-serif; caret-color:#b02a24; } .ds-input::placeholder { color:#69665e; opacity:1; } .ds-input:focus-visible { outline: 3px solid #222222; outline-offset: 5px; }"
+    },
+    {
+      "name": "Attendance choice",
+      "kind": "input",
+      "description": "Selected RSVP attendance option.",
+      "html": "<label class=\"ds-choice\"><input type=\"radio\" checked name=\"ds-attendance\"> Iya, aku datang!</label>",
+      "css": ".ds-choice { display:flex; align-items:center; gap:7px; min-height:48px; padding:10px; border:1px solid #aaa79e; border-radius:7px; color:#222222; font:700 11px \"Sena Text\", Nunito, sans-serif; cursor:pointer; } .ds-choice:has(input:checked) { background:#fff3bb; border-color:#70601e; } .ds-choice input { accent-color:#222222; width:15px; height:15px; margin:0; } .ds-choice input:focus-visible { outline: 3px solid #222222; outline-offset: 5px; }"
+    },
+    {
+      "name": "Event board",
+      "kind": "card",
+      "refersTo": "event-board",
+      "description": "Rotated white paper for event facts.",
+      "html": "<div class=\"ds-board\"><span>MINGGU</span><strong>29</strong><span>NOVEMBER 2026</span><p>15.00 WIB</p></div>",
+      "css": ".ds-board { padding:30px; background:#fff; color:#222222; border-radius:4px; transform:rotate(2deg); box-shadow:0 14px 32px #56350014; font:700 10px \"Sena Text\", Nunito, sans-serif; text-align:center; } .ds-board span { display:block; letter-spacing:.05em; } .ds-board strong { display:block; color:#b42b24; font:800 88px/1.1 \"Sena Display\", \"Barlow Condensed\", sans-serif; } .ds-board p { font-size:17px; }"
+    },
+    {
+      "name": "Mobile navigation",
+      "kind": "nav",
+      "description": "Fixed navigation rendered here as an inline preview.",
+      "html": "<nav class=\"ds-nav\"><a href=\"#detail\">Acara</a><a href=\"#detail\">Lokasi</a><a href=\"#rsvp\">Aku ikut! →</a></nav>",
+      "css": ".ds-nav { display:flex; justify-content:space-between; padding:7px; border-radius:14px; background:#fff; box-shadow:0 5px 35px #22222226; } .ds-nav a { display:flex; align-items:center; justify-content:center; flex:1; min-height:44px; padding:12px 10px; color:#222222; text-decoration:none; font:700 11px \"Sena Text\", Nunito, sans-serif; } .ds-nav a:last-child { background:#ffd22e; border-radius:8px; } .ds-nav a:focus-visible { outline: 3px solid #222222; outline-offset: 5px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "Toy-excavator scrapbook",
+    "overview": "Sena’s first-birthday invitation uses the approved toy-excavator and scrapbook direction. Yellow sections, white paper photographs, orange tape, red birthday accents, and dark text frame a warm family celebration.\n\nThis design system applies to `/birthday/sena` and its invitation components. The established portfolio, blog, gallery, and wedding surfaces retain their own visual systems.",
+    "keyCharacteristics": [
+      "Toy excavators and layered paper keepsakes",
+      "Condensed bold headings with rounded body text",
+      "Large yellow sections and white photograph frames"
+    ],
+    "rules": [],
+    "dos": [
+      "Use the documented palette and locally hosted birthday fonts within `/birthday/sena`.",
+      "Preserve the main Sena portrait, paper framing, tape, and excavator imagery.",
+      "Keep event details, directions, calendar download, and RSVP easy to reach."
+    ],
+    "donts": [
+      "Avoid applying this surface-specific design system to the portfolio, blog, gallery, or wedding pages."
+    ]
+  }
+}
